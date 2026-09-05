@@ -1,0 +1,1974 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>André Rodrigues | Gestor de Tráfego Pago - Google Ads & Meta Ads</title>
+    <meta name="description" content="Aumente suas vendas com tráfego pago inteligente. Especialista em Google Ads e Meta Ads. Resultados reais para o seu negócio.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #050816;
+            --bg-secondary: #0a0f2c;
+            --bg-card: #0d1335;
+            --bg-card-hover: #111a45;
+            --blue-primary: #2563eb;
+            --blue-light: #3b82f6;
+            --blue-glow: #1d4ed8;
+            --cyan: #06b6d4;
+            --cyan-light: #22d3ee;
+            --purple: #7c3aed;
+            --green: #10b981;
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border-color: rgba(37, 99, 235, 0.15);
+            --gradient-blue: linear-gradient(135deg, #2563eb, #06b6d4);
+            --gradient-purple: linear-gradient(135deg, #7c3aed, #2563eb);
+            --gradient-card: linear-gradient(145deg, rgba(13, 19, 53, 0.9), rgba(5, 8, 22, 0.9));
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== ANIMATED BACKGROUND ===== */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(37, 99, 235, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(37, 99, 235, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .bg-glow-1 {
+            position: fixed;
+            top: -200px;
+            right: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .bg-glow-2 {
+            position: fixed;
+            bottom: -200px;
+            left: -200px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -30px); }
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 16px 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            background: rgba(5, 8, 22, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid transparent;
+        }
+
+        .navbar.scrolled {
+            padding: 12px 0;
+            background: rgba(5, 8, 22, 0.95);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-blue);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-cta {
+            background: var(--gradient-blue) !important;
+            color: var(--text-primary) !important;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-weight: 600 !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.4);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 80px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 60%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--cyan-light);
+            margin-bottom: 32px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5.5vw, 4.2rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero h1 .highlight {
+            background: var(--gradient-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--gradient-blue);
+            color: white;
+            padding: 16px 36px;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 40px rgba(37, 99, 235, 0.5);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            color: var(--text-primary);
+            padding: 16px 36px;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(37, 99, 235, 0.1);
+            border-color: var(--blue-primary);
+            transform: translateY(-3px);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 64px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-color);
+            animation: fadeInUp 0.8s ease 0.8s both;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat .number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: var(--gradient-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-stat .label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* ===== FLOATING ELEMENTS ===== */
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .float-shape {
+            position: absolute;
+            border-radius: 12px;
+            opacity: 0.15;
+        }
+
+        .float-shape-1 {
+            top: 15%;
+            left: 8%;
+            width: 60px;
+            height: 60px;
+            background: var(--blue-primary);
+            animation: floatSpin 12s linear infinite;
+        }
+
+        .float-shape-2 {
+            top: 25%;
+            right: 10%;
+            width: 40px;
+            height: 40px;
+            background: var(--cyan);
+            animation: floatSpin 15s linear infinite reverse;
+            border-radius: 50%;
+        }
+
+        .float-shape-3 {
+            bottom: 20%;
+            left: 15%;
+            width: 50px;
+            height: 50px;
+            background: var(--purple);
+            animation: floatSpin 10s linear infinite;
+            border-radius: 8px;
+        }
+
+        .float-shape-4 {
+            bottom: 30%;
+            right: 12%;
+            width: 35px;
+            height: 35px;
+            background: var(--blue-light);
+            animation: floatSpin 18s linear infinite reverse;
+        }
+
+        @keyframes floatSpin {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, -30px) rotate(90deg); }
+            50% { transform: translate(-10px, -60px) rotate(180deg); }
+            75% { transform: translate(30px, -30px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+
+        /* ===== SECTION STYLES ===== */
+        section {
+            padding: 100px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--cyan-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-header .section-subtitle {
+            margin: 0 auto;
+        }
+
+        /* ===== PROBLEM SECTION ===== */
+        .problem {
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .problem-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .problem-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 20px;
+            background: rgba(239, 68, 68, 0.03);
+            border: 1px solid rgba(239, 68, 68, 0.1);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .problem-item:hover {
+            background: rgba(239, 68, 68, 0.06);
+            border-color: rgba(239, 68, 68, 0.2);
+            transform: translateX(8px);
+        }
+
+        .problem-icon {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ef4444;
+            font-size: 1.1rem;
+        }
+
+        .problem-item h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .problem-item p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .solution-box {
+            background: var(--gradient-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 48px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .solution-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-blue);
+        }
+
+        .solution-box .emoji {
+            font-size: 3rem;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .solution-box h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .solution-box p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        /* ===== SERVICES SECTION ===== */
+        .services {
+            background: var(--bg-secondary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .service-card {
+            background: var(--gradient-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-blue);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            border-color: rgba(37, 99, 235, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(37, 99, 235, 0.1);
+        }
+
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 24px;
+        }
+
+        .service-icon.google {
+            background: rgba(66, 133, 244, 0.1);
+            color: #4285f4;
+        }
+
+        .service-icon.meta {
+            background: rgba(24, 119, 242, 0.1);
+            color: #1877f2;
+        }
+
+        .service-icon.analytics {
+            background: rgba(6, 182, 212, 0.1);
+            color: var(--cyan);
+        }
+
+        .service-icon.strategy {
+            background: rgba(124, 58, 237, 0.1);
+            color: var(--purple);
+        }
+
+        .service-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .service-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .service-features li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .service-features li i {
+            color: var(--green);
+            font-size: 0.8rem;
+        }
+
+        /* ===== RESULTS SECTION ===== */
+        .results {
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 64px;
+        }
+
+        .result-card {
+            background: var(--gradient-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .result-card:hover {
+            border-color: rgba(37, 99, 235, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .result-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: var(--gradient-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .result-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Dashboard Showcase */
+        .dashboard-showcase {
+            background: var(--gradient-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-showcase::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-blue);
+        }
+
+        .dashboard-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+        }
+
+        .dashboard-header h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .dashboard-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .dashboard-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .metric-box {
+            background: rgba(37, 99, 235, 0.05);
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .metric-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .metric-change {
+            font-size: 0.85rem;
+            color: var(--green);
+            margin-top: 4px;
+        }
+
+        /* ===== PROCESS SECTION ===== */
+        .process {
+            background: var(--bg-primary);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            position: relative;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 12.5%;
+            right: 12.5%;
+            height: 2px;
+            background: var(--gradient-blue);
+            opacity: 0.3;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            background: var(--gradient-card);
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--blue-light);
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover .step-number {
+            background: var(--gradient-blue);
+            color: white;
+            border-color: var(--blue-primary);
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(37, 99, 235, 0.3);
+        }
+
+        .process-step h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .process-step p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials {
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .testimonial-card {
+            background: var(--gradient-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .testimonial-card:hover {
+            border-color: rgba(37, 99, 235, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .testimonial-stars {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 16px;
+        }
+
+        .testimonial-stars i {
+            color: #fbbf24;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-text {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--gradient-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            color: white;
+        }
+
+        .author-info h5 {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .author-info p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ===== FAQ SECTION ===== */
+        .faq {
+            background: var(--bg-secondary);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .faq-item {
+            background: var(--gradient-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active {
+            border-color: rgba(37, 99, 235, 0.3);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: left;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--blue-light);
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+            color: var(--blue-light);
+            font-size: 0.85rem;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+
+        .faq-answer p {
+            padding: 0 24px 20px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ===== CTA FINAL ===== */
+        .cta-section {
+            background: var(--bg-primary);
+            padding: 120px 0;
+        }
+
+        .cta-box {
+            background: linear-gradient(145deg, rgba(37, 99, 235, 0.1), rgba(6, 182, 212, 0.05));
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            border-radius: 24px;
+            padding: 80px 48px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(37, 99, 235, 0.05) 0%, transparent 60%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cta-box > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-box h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .cta-box p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 550px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25d366;
+            color: white;
+            padding: 18px 40px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 40px rgba(37, 211, 102, 0.5);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 48px 0 24px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(37, 99, 235, 0.1);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: var(--blue-primary);
+            color: white;
+            border-color: var(--blue-primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-color);
+            padding-top: 24px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ===== WHATSAPP FLOAT ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.6rem;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+            animation: bounceIn 1s ease 1s both;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .results-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+
+            .process-steps::before {
+                display: none;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .dashboard-metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: rgba(5, 8, 22, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 32px 24px;
+                gap: 20px;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .problem-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-box {
+                padding: 48px 24px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-primary, .btn-secondary, .btn-whatsapp {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .solution-box {
+                padding: 32px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Elements -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <div class="logo-icon">AR</div>
+                André Rodrigues
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#resultados">Resultados</a></li>
+                <li><a href="#processo">Processo</a></li>
+                <li><a href="#depoimentos">Depoimentos</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contato" class="nav-cta">Falar Comigo</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero" id="inicio">
+        <div class="floating-elements">
+            <div class="float-shape float-shape-1"></div>
+            <div class="float-shape float-shape-2"></div>
+            <div class="float-shape float-shape-3"></div>
+            <div class="float-shape float-shape-4"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="dot"></span>
+                    Especialista em Tráfego Pago
+                </div>
+                <h1>
+                    Transforme cliques em <span class="highlight">clientes reais</span> com tráfego pago inteligente
+                </h1>
+                <p>
+                    Estratégias avançadas em <strong>Google Ads</strong> e <strong>Meta Ads</strong> que colocam seu negócio na frente das pessoas certas, no momento certo, gerando vendas previsíveis todos os dias.
+                </p>
+                <div class="hero-buttons">
+                    <a href="https://wa.me/5500000000000?text=Olá%20André!%20Quero%20saber%20mais%20sobre%20gestão%20de%20tráfego%20pago." class="btn-primary" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Quero Escalar Minhas Vendas
+                    </a>
+                    <a href="#resultados" class="btn-secondary">
+                        <i class="fas fa-chart-line"></i> Ver Resultados
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="number" data-target="150" data-suffix="+">0+</div>
+                        <div class="label">Clientes Atendidos</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="number" data-target="2" data-prefix="R$" data-suffix="M+">R$0</div>
+                        <div class="label">Investidos em Anúncios</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="number" data-target="5" data-suffix="x">0x</div>
+                        <div class="label">ROI Médio dos Clientes</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="number" data-target="4" data-suffix=" Anos">0 Anos</div>
+                        <div class="label">De Experiência</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROBLEM SECTION ===== -->
+    <section class="problem" id="problema">
+        <div class="container">
+            <div class="problem-grid">
+                <div>
+                    <span class="section-badge">🎯 O Problema</span>
+                    <h2 class="section-title">Você se identifica com algum desses cenários?</h2>
+                    <p class="section-subtitle" style="margin-bottom: 32px;">A maioria dos negócios enfrenta esses desafios antes de ter uma gestão de tráfego profissional.</p>
+                    <ul class="problem-list">
+                        <li class="problem-item animate-on-scroll">
+                            <div class="problem-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div>
+                                <h4>Gasta com anúncios, mas não vê retorno</h4>
+                                <p>Investiu dinheiro em Google ou Instagram, mas os leads não chegam ou não se convertem em vendas.</p>
+                            </div>
+                        </li>
+                        <li class="problem-item animate-on-scroll">
+                            <div class="problem-icon">
+                                <i class="fas fa-users-slash"></i>
+                            </div>
+                            <div>
+                                <h4>Depende só de indicação para vender</h4>
+                                <p>Seu negócio não tem previsibilidade. Em um mês vende bem, no outro quase nada.</p>
+                            </div>
+                        </li>
+                        <li class="problem-item animate-on-scroll">
+                            <div class="problem-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4>Não tem tempo para aprender tráfego</h4>
+                                <p>Tentou fazer sozinho, mas é complexo, muda sempre e consome tempo demais do seu dia.</p>
+                            </div>
+                        </li>
+                        <li class="problem-item animate-on-scroll">
+                            <div class="problem-icon">
+                                <i class="fas fa-chart-line-down"></i>
+                            </div>
+                            <div>
+                                <h4>Concorrentes estão na sua frente</h4>
+                                <p>Enquanto você espera, seus concorrentes já estão aparecendo no Google e nas redes sociais.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="solution-box animate-on-scroll">
+                    <span class="emoji">🚀</span>
+                    <h3>A solução? <span style="background: var(--gradient-blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Tráfego Pago Profissional.</span></h3>
+                    <p>Com estratégias validadas em Google Ads e Meta Ads, eu coloco o seu negócio na frente de quem <strong style="color: white;">realmente quer comprar</strong>. Sem achismo, com dados, métricas e resultados reais.</p>
+                    <a href="https://wa.me/5500000000000?text=Olá%20André!%20Quero%20uma%20análise%20gratuita." class="btn-primary" target="_blank">
+                        <i class="fas fa-rocket"></i> Solicitar Análise Gratuita
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SERVICES SECTION ===== -->
+    <section class="services" id="servicos">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">⚡ Serviços</span>
+                <h2 class="section-title">Como eu ajudo seu negócio a crescer</h2>
+                <p class="section-subtitle">Soluções completas em tráfego pago para atrair clientes qualificados e aumentar suas vendas de forma consistente.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon google">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <h3>Google Ads</h3>
+                    <p>Seus anúncios aparecem exatamente quando o cliente pesquisa pelo seu produto ou serviço. Capture demanda real.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Rede de Pesquisa (Search)</li>
+                        <li><i class="fas fa-check"></i> Google Shopping</li>
+                        <li><i class="fas fa-check"></i> Rede de Display e YouTube Ads</li>
+                        <li><i class="fas fa-check"></i> Performance Max</li>
+                        <li><i class="fas fa-check"></i> Remarketing inteligente</li>
+                    </ul>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon meta">
+                        <i class="fab fa-meta"></i>
+                    </div>
+                    <h3>Meta Ads</h3>
+                    <p>Anúncios estratégicos no Instagram e Facebook que geram engajamento e convertem seguidores em clientes.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Instagram Feed, Stories e Reels</li>
+                        <li><i class="fas fa-check"></i> Facebook e Messenger</li>
+                        <li><i class="fas fa-check"></i> Geração de leads qualificados</li>
+                        <li><i class="fas fa-check"></i> Catálogo de produtos</li>
+                        <li><i class="fas fa-check"></i> Públicos lookalike e retargeting</li>
+                    </ul>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon analytics">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3>Análise e Otimização</h3>
+                    <p>Acompanho cada centavo investido com dashboards claros e otimizações contínuas para maximizar seus resultados.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Dashboard de resultados em tempo real</li>
+                        <li><i class="fas fa-check"></i> Rastreamento com GA4 e Pixel</li>
+                        <li><i class="fas fa-check"></i> Relatórios semanais detalhados</li>
+                        <li><i class="fas fa-check"></i> Testes A/B constantes</li>
+                        <li><i class="fas fa-check"></i> Otimização de custo por lead</li>
+                    </ul>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon strategy">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Consultoria Estratégica</h3>
+                    <p>Além dos anúncios, analiso seu funil completo: da landing page ao atendimento, para garantir conversão máxima.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Análise de landing pages</li>
+                        <li><i class="fas fa-check"></i> Estratégia de funil de vendas</li>
+                        <li><i class="fas fa-check"></i> Copywriting para anúncios</li>
+                        <li><i class="fas fa-check"></i> Público-alvo e segmentação</li>
+                        <li><i class="fas fa-check"></i> Planejamento de investimento</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== RESULTS SECTION ===== -->
+    <section class="results" id="resultados">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">📊 Resultados</span>
+                <h2 class="section-title">Números que falam por si</h2>
+                <p class="section-subtitle">Resultados reais alcançados para clientes de diferentes segmentos através de estratégias personalizadas.</p>
+            </div>
+            <div class="results-grid">
+                <div class="result-card animate-on-scroll">
+                    <div class="result-number">150+</div>
+                    <div class="result-label">Clientes satisfeitos</div>
+                </div>
+                <div class="result-card animate-on-scroll">
+                    <div class="result-number">R$2M+</div>
+                    <div class="result-label">Gerenciados em ads</div>
+                </div>
+                <div class="result-card animate-on-scroll">
+                    <div class="result-number">5x</div>
+                    <div class="result-label">ROI médio alcançado</div>
+                </div>
+                <div class="result-card animate-on-scroll">
+                    <div class="result-number">-47%</div>
+                    <div class="result-label">Redução no custo por lead</div>
+                </div>
+            </div>
+
+            <!-- Dashboard Showcase -->
+            <div class="dashboard-showcase animate-on-scroll">
+                <div class="dashboard-header">
+                    <h3>📈 Exemplo de resultados reais de um cliente</h3>
+                    <div class="dashboard-badge">
+                        <i class="fas fa-arrow-trend-up"></i>
+                        Campanha ativa
+                    </div>
+                </div>
+                <div class="dashboard-metrics">
+                    <div class="metric-box">
+                        <div class="metric-label">Investido</div>
+                        <div class="metric-value">R$ 3.500</div>
+                        <div class="metric-change"><i class="fas fa-arrow-up"></i> Otimizado</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Faturamento gerado</div>
+                        <div class="metric-value">R$ 28.700</div>
+                        <div class="metric-change"><i class="fas fa-arrow-up"></i> +820% ROAS</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Leads gerados</div>
+                        <div class="metric-value">347</div>
+                        <div class="metric-change"><i class="fas fa-arrow-up"></i> R$ 10,09/lead</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Taxa de conversão</div>
+                        <div class="metric-value">8,2%</div>
+                        <div class="metric-change"><i class="fas fa-arrow-up"></i> +3,1% vs anterior</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Cliques</div>
+                        <div class="metric-value">4.231</div>
+                        <div class="metric-change"><i class="fas fa-arrow-up"></i> CTR 4,7%</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Impressões</div>
+                        <div class="metric-value">89.540</div>
+                        <div class="metric-change"><i class="fas fa-arrow-up"></i> Alcance local</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROCESS SECTION ===== -->
+    <section class="process" id="processo">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">🔄 Processo</span>
+                <h2 class="section-title">Como funciona meu trabalho</h2>
+                <p class="section-subtitle">Um processo claro e organizado, do diagnóstico ao resultado. Sem surpresas, só crescimento.</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">01</div>
+                    <h4>Diagnóstico</h4>
+                    <p>Analiso seu negócio, mercado, concorrentes e público-alvo para entender a melhor estratégia.</p>
+                </div>
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">02</div>
+                    <h4>Planejamento</h4>
+                    <p>Crio as campanhas, defino orçamentos, criativos e segmentações com foco em resultado.</p>
+                </div>
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">03</div>
+                    <h4>Execução</h4>
+                    <p>Coloco as campanhas no ar no Google Ads e Meta Ads, com rastreamento completo configurado.</p>
+                </div>
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">04</div>
+                    <h4>Otimização</h4>
+                    <p>Monitoro diariamente, faço testes A/B e otimizo para reduzir custos e escalar seus resultados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="testimonials" id="depoimentos">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">💬 Depoimentos</span>
+                <h2 class="section-title">O que meus clientes dizem</h2>
+                <p class="section-subtitle">Resultados de verdade, de pessoas reais que confiaram no meu trabalho.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Antes do André, eu gastava R$2.000 por mês em anúncios e mal conseguia 10 leads. Hoje invisto o mesmo valor e recebo mais de 80 leads qualificados. Meu faturamento triplicou em 3 meses!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MC</div>
+                        <div class="author-info">
+                            <h5>Marcos Costa</h5>
+                            <p>Dono de Clínica Odontológica</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"O André entende do negócio, não só de botão. Ele analisou todo meu funil, sugeriu mudanças na minha página e nos criativos. O resultado? Custo por lead caiu 60% e as vendas dispararam."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">FL</div>
+                        <div class="author-info">
+                            <h5>Fernanda Lima</h5>
+                            <p>Loja de Roupas Online</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Eu tentei fazer tráfego sozinho e perdi dinheiro. O André assumiu e em 30 dias eu já tinha retorno positivo. Profissional, transparente e sempre disponível. Super recomendo!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RP</div>
+                        <div class="author-info">
+                            <h5>Ricardo Pereira</h5>
+                            <p>Restaurante e Delivery</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FAQ SECTION ===== -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="faq-grid">
+                <div>
+                    <span class="section-badge">❓ FAQ</span>
+                    <h2 class="section-title">Perguntas Frequentes</h2>
+                    <p class="section-subtitle" style="margin-bottom: 32px;">Tire suas dúvidas antes de dar o próximo passo. Se não encontrar sua pergunta, é só me chamar no WhatsApp.</p>
+                    <a href="https://wa.me/5500000000000?text=Olá%20André!%20Tenho%20uma%20dúvida." class="btn-primary" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Tirar Dúvida
+                    </a>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item active">
+                        <button class="faq-question">
+                            Quanto preciso investir em anúncios?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>O investimento depende do seu segmento e objetivos. Para a maioria dos negócios locais, recomendo iniciar com R$30 a R$50 por dia. Vamos juntos definir o orçamento ideal para o seu caso na nossa conversa inicial.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Em quanto tempo vejo resultados?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Geralmente os primeiros resultados aparecem já nas primeiras 2 semanas. O período de otimização completa leva de 30 a 60 dias, quando as campanhas atingem a maturidade e os resultados se tornam consistentes.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Como funciona o contrato?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Trabalho com contratos mensais sem fidelidade. Meu objetivo é que você fique porque vê resultado, não porque está preso. A transparência é a base do meu trabalho.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Preciso já ter site ou página de vendas?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Não necessariamente. Podemos começar com campanhas que direcionam para o WhatsApp. Mas se você precisar, posso orientar na criação de uma landing page otimizada para conversão.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Qual a diferença entre Google Ads e Meta Ads?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>O Google Ads captura quem já está buscando por seu produto/serviço (demanda ativa). O Meta Ads (Instagram/Facebook) cria desejo e gera demanda em quem ainda não estava procurando. O ideal é combinar os dois para resultados máximos.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Como acompanho os resultados?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Envio relatórios semanais com todos os dados das campanhas: investimento, leads, custo por lead, conversões e ROI. Além disso, você terá acesso direto ao dashboard para acompanhar em tempo real.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA FINAL ===== -->
+    <section class="cta-section" id="contato">
+        <div class="container">
+            <div class="cta-box animate-on-scroll">
+                <span class="section-badge">🚀 Vamos Começar</span>
+                <h2>Pronto para <span style="background: var(--gradient-blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">escalar</span> suas vendas?</h2>
+                <p>Fale comigo agora e receba uma análise gratuita do seu negócio. Vou te mostrar exatamente como o tráfego pago pode transformar seus resultados.</p>
+                <div class="cta-buttons">
+                    <a href="https://wa.me/5500000000000?text=Olá%20André!%20Quero%20escalar%20minhas%20vendas%20com%20tráfego%20pago." class="btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Falar com André no WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <a href="#" class="footer-logo">
+                    <div class="logo-icon" style="width: 36px; height: 36px; font-size: 0.9rem;">AR</div>
+                    André Rodrigues
+                </a>
+                <div class="footer-social">
+                    <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 André Rodrigues — Gestor de Tráfego Pago. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/5500000000000?text=Olá%20André!%20Vi%20seu%20site%20e%20quero%20saber%20mais." class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ===== Navbar Scroll Effect =====
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ===== Mobile Menu Toggle =====
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = mobileToggle.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            });
+        });
+
+        // ===== FAQ Accordion =====
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.parentElement;
+                const isActive = item.classList.contains('active');
+
+                // Close all
+                document.querySelectorAll('.faq-item').forEach(faq => {
+                    faq.classList.remove('active');
+                });
+
+                // Toggle clicked
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // ===== Scroll Animations =====
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ===== Counter Animation =====
+        function animateCounters() {
+            const counters = document.querySelectorAll('.hero-stat .number');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const suffix = counter.getAttribute('data-suffix') || '';
+                const prefix = counter.getAttribute('data-prefix') || '';
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = prefix + Math.ceil(current) + suffix;
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = prefix + target + suffix;
+                    }
+                };
+                updateCounter();
+            });
+        }
+
+        // Trigger counter animation when hero is visible
+        const heroObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    heroObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const heroStats = document.querySelector('.hero-stats');
+        if (heroStats) heroObserver.observe(heroStats);
+
+        // ===== Smooth scroll for anchor links =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
