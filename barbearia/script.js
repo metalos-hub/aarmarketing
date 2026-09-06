@@ -29,10 +29,20 @@ document.querySelector('#year').textContent = new Date().getFullYear();
 
 document.querySelectorAll('.track-whatsapp').forEach((link) => {
   link.addEventListener('click', () => {
+    const position = link.closest('header') ? 'header' : link.closest('.hero') ? 'hero' : link.closest('.final-cta') ? 'final_cta' : 'content';
+    
+    // Google Ads / Analytics via GTM
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event: 'whatsapp_click',
-      link_position: link.closest('header') ? 'header' : link.closest('.hero') ? 'hero' : link.closest('.final-cta') ? 'final_cta' : 'content'
+      link_position: position
     });
+
+    // Meta Ads (Facebook Pixel)
+    if (typeof fbq === 'function') {
+      fbq('trackCustom', 'WhatsAppClick', { position: position });
+      // Evento alternativo padrão do Meta, caso queira otimizar para 'Contato'
+      // fbq('track', 'Contact', { content_name: 'WhatsApp', position: position });
+    }
   });
 });
