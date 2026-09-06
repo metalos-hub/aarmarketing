@@ -25,11 +25,24 @@ document.querySelectorAll('.nav-links a').forEach(link => {
   });
 });
 
+// Inicializa o dataLayer se ainda não existir
+window.dataLayer = window.dataLayer || [];
+
 document.querySelectorAll('.js-whatsapp').forEach(link => {
   const message = link.dataset.message || 'Olá André! Quero saber mais sobre gestão de tráfego pago.';
   link.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
   link.target = '_blank';
   link.rel = 'noopener noreferrer';
+
+  // Evento de disparo para o GTM
+  link.addEventListener('click', () => {
+    const location = link.dataset.trackLocation || 'Não definido';
+    window.dataLayer.push({
+      'event': 'whatsapp_click',
+      'button_location': location,
+      'message_text': message
+    });
+  });
 });
 
 document.querySelectorAll('.faq-question').forEach(button => {
@@ -37,7 +50,15 @@ document.querySelectorAll('.faq-question').forEach(button => {
     const item = button.closest('.faq-item');
     const wasActive = item.classList.contains('active');
     document.querySelectorAll('.faq-item').forEach(faq => faq.classList.remove('active'));
-    if (!wasActive) item.classList.add('active');
+    
+    if (!wasActive) {
+      item.classList.add('active');
+      // Evento de disparo para o GTM quando abre uma dúvida
+      window.dataLayer.push({
+        'event': 'faq_expand',
+        'question_text': button.textContent.trim()
+      });
+    }
   });
 });
 
