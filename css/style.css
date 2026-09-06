@@ -1,4 +1,4 @@
-
+*{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#07111f;--bg-2:#0a1626;--panel:#0d1b2d;--panel-2:#102238;--line:rgba(148,178,210,.14);
   --text:#f7fbff;--muted:#97a9bd;--muted-2:#6e8298;--blue:#2d8cff;--cyan:#35d5f4;--green:#25d366;
@@ -56,10 +56,10 @@ button,input,textarea{font:inherit}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.reveal{opacity:1;transform:none;transition:none}.btn,.navbar,.faq-answer,.faq-question i{transition:none}}
 .brand-logo {
   display: block;
-  width: 300px;
-  max-width: 100%;
+  width: 360px;
+  max-width: none;
   height: auto;
-  max-height: 64px;
+  max-height: 72px;
   object-fit: contain;
   object-position: left center;
 }
@@ -72,14 +72,14 @@ button,input,textarea{font:inherit}
 
 @media (max-width: 768px) {
   .brand-logo {
-    width: 220px;
-    max-height: 52px;
+    width: 250px;
+    max-height: 56px;
   }
 }
 
 @media (max-width: 560px) {
   .brand-logo {
-    width: 195px;
+    width: 210px;
     max-height: 48px;
   }
 }
