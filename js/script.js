@@ -1,7 +1,9 @@
 'use strict';
 
 const CONFIG = Object.freeze({
-  whatsappNumber: '',
+  whatsappNumber: '5548999001340',
+  // Inserir a URL pública da automação depois de configurada. Nunca inserir credenciais aqui.
+  // A automação deve responder HTTP 2xx com JSON { "ok": true } após registrar a solicitação.
   webhookUrl: '',
   gtmId: ''
 });
@@ -31,14 +33,13 @@ function captureAttribution() {
     if (value) current[key] = value;
   });
 
-  if (Object.keys(current).length) {
-    sessionStorage.setItem('ar_attribution', JSON.stringify(current));
-  }
-
   try {
+    if (Object.keys(current).length) {
+      sessionStorage.setItem('ar_attribution', JSON.stringify(current));
+    }
     return JSON.parse(sessionStorage.getItem('ar_attribution') || '{}');
   } catch {
-    return {};
+    return current;
   }
 }
 
@@ -89,6 +90,7 @@ const revealItems = document.querySelectorAll('.reveal');
 if (reducedMotion || !('IntersectionObserver' in window)) {
   revealItems.forEach((item) => item.classList.add('is-visible'));
 } else {
+  document.documentElement.classList.add('motion-ready');
   const revealObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
@@ -111,12 +113,13 @@ document.querySelectorAll('[data-track-view]').forEach((section) => {
   sectionObserver.observe(section);
 });
 
-const whatsappButton = document.querySelector('[data-whatsapp]');
-if (whatsappButton && /^\d{10,15}$/.test(CONFIG.whatsappNumber)) {
+if (/^\d{10,15}$/.test(CONFIG.whatsappNumber)) {
   const message = 'Olá André! Vi seu site e gostaria de conversar sobre gestão de tráfego para minha empresa.';
-  whatsappButton.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
-  whatsappButton.hidden = false;
-  whatsappButton.addEventListener('click', () => trackEvent('whatsapp_click'));
+  document.querySelectorAll('[data-whatsapp]').forEach((button) => {
+    button.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
+    button.hidden = false;
+    button.addEventListener('click', () => trackEvent('whatsapp_click', { placement: button.dataset.placement }));
+  });
 }
 
 const form = document.querySelector('#lead-form');
@@ -133,8 +136,18 @@ if (form) {
   const success = form.querySelector('#form-success');
   const formHead = form.querySelector('.form-head');
   const formActions = form.querySelector('.form-actions');
+  const deliveryNote = form.querySelector('#delivery-note');
+  const formHelp = form.querySelector('#form-help');
+  const handoff = form.querySelector('#form-handoff');
+  const handoffLink = form.querySelector('#form-whatsapp-link');
+  const submitLabel = CONFIG.webhookUrl ? 'Solicitar análise ' : 'Preparar mensagem ';
+  submitButton.firstChild.textContent = submitLabel;
+  deliveryNote.textContent = CONFIG.webhookUrl
+    ? 'Envie suas respostas para que André entre em contato sobre sua operação.'
+    : 'Ao terminar, você poderá levar suas respostas para uma conversa no WhatsApp.';
   let currentStep = 0;
   let started = false;
+  let submissionId = '';
 
   const stepTitles = [
     'Onde sua empresa anuncia?',
@@ -167,13 +180,14 @@ if (form) {
     if (currentStep > 0) trackEvent(`form_step_${currentStep + 1}`);
   }
 
-  function validateStep() {
-    const activeStep = steps[currentStep];
+  function validateStep(stepIndex = currentStep) {
+    const activeStep = steps[stepIndex];
     const requiredFields = [...activeStep.querySelectorAll('[required]')];
     const radioGroups = new Set(requiredFields.filter((field) => field.type === 'radio').map((field) => field.name));
 
     for (const groupName of radioGroups) {
       if (!activeStep.querySelector(`input[name="${groupName}"]:checked`)) {
+        if (stepIndex !== currentStep) showStep(stepIndex);
         errorMessage.textContent = 'Escolha uma opção para continuar.';
         activeStep.querySelector(`input[name="${groupName}"]`)?.focus();
         return false;
@@ -181,9 +195,11 @@ if (form) {
     }
 
     for (const field of requiredFields.filter((item) => item.type !== 'radio')) {
-      if (!field.checkValidity()) {
+      const validPhone = field.type !== 'tel' || /^\d{10,11}$/.test(field.value.replace(/\D/g, ''));
+      if (!field.value.trim() || !field.checkValidity() || !validPhone) {
+        if (stepIndex !== currentStep) showStep(stepIndex);
         field.classList.add('is-invalid');
-        errorMessage.textContent = field.type === 'email' ? 'Informe um e-mail válido.' : 'Preencha este campo para continuar.';
+        errorMessage.textContent = field.type === 'email' ? 'Informe um e-mail válido.' : field.type === 'tel' ? 'Informe um WhatsApp válido com DDD.' : 'Preencha este campo para continuar.';
         field.focus();
         return false;
       }
@@ -218,6 +234,7 @@ if (form) {
 
   form.querySelectorAll('input').forEach((field) => {
     field.addEventListener('input', () => {
+      submissionId = '';
       field.classList.remove('is-invalid');
       errorMessage.textContent = '';
     });
@@ -233,22 +250,37 @@ if (form) {
     phoneField.value = parts.join('-');
   });
 
+  handoffLink.addEventListener('click', () => trackEvent('whatsapp_click', { placement: 'form' }));
+
+  form.querySelector('#edit-answers').addEventListener('click', () => {
+    handoff.hidden = true;
+    formHead.hidden = false;
+    formActions.hidden = false;
+    deliveryNote.hidden = false;
+    showStep(currentStep, 'previous');
+  });
+
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    if (!validateStep()) return;
-
-    if (!CONFIG.webhookUrl) {
-      errorMessage.textContent = 'O formulário está pronto, mas ainda precisa ser conectado ao canal de recebimento antes da publicação final.';
+    if (submitButton.disabled) return;
+    if (currentStep < steps.length - 1) {
+      if (validateStep()) showStep(currentStep + 1);
       return;
+    }
+    for (let stepIndex = 0; stepIndex < steps.length; stepIndex += 1) {
+      if (!validateStep(stepIndex)) return;
     }
 
     const formData = new FormData(form);
+    submissionId ||= crypto.randomUUID();
     const payload = {
-      name: formData.get('name'),
-      company: formData.get('company'),
-      phone: formData.get('phone'),
-      email: formData.get('email'),
-      website: formData.get('website'),
+      submissionId,
+      submittedAt: new Date().toISOString(),
+      name: formData.get('name').trim(),
+      company: formData.get('company').trim(),
+      phone: formData.get('phone').trim(),
+      email: formData.get('email').trim(),
+      website: formData.get('website').trim(),
       platforms: formData.get('platforms'),
       objective: formData.get('objective'),
       monthlyMediaInvestment: formData.get('monthlyMediaInvestment'),
@@ -256,32 +288,68 @@ if (form) {
       ...attribution
     };
 
+    if (!CONFIG.webhookUrl) {
+      const message = [
+        'Olá André! Gostaria de conversar sobre gestão de tráfego.',
+        '',
+        `Nome: ${payload.name}`,
+        `Empresa: ${payload.company}`,
+        `Site/Instagram: ${payload.website}`,
+        `Plataformas: ${payload.platforms}`,
+        `Objetivo: ${payload.objective}`,
+        `Investimento mensal em mídia: ${payload.monthlyMediaInvestment}`,
+        `WhatsApp: ${payload.phone}`,
+        `E-mail: ${payload.email}`
+      ].join('\n');
+      handoffLink.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
+      steps.forEach((step) => step.classList.remove('is-active'));
+      formHead.hidden = true;
+      formActions.hidden = true;
+      deliveryNote.hidden = true;
+      clearError();
+      formHelp.hidden = true;
+      handoff.hidden = false;
+      handoff.focus();
+      trackEvent('form_whatsapp_ready');
+      return;
+    }
+
     submitButton.disabled = true;
     submitButton.firstChild.textContent = 'Enviando ';
     clearError();
+    formHelp.hidden = true;
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 15000);
 
     try {
       const response = await fetch(CONFIG.webhookUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
+        signal: controller.signal
       });
 
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const receipt = await response.json();
+      if (receipt.ok !== true) throw new Error('Recebimento não confirmado');
 
       trackEvent('form_submit', { platforms: payload.platforms, objective: payload.objective });
       steps.forEach((step) => step.classList.remove('is-active'));
       formHead.hidden = true;
       formActions.hidden = true;
+      deliveryNote.hidden = true;
       errorMessage.hidden = true;
       success.hidden = false;
       success.focus();
       form.reset();
     } catch (error) {
-      errorMessage.textContent = 'Não foi possível enviar agora. Aguarde um momento e tente novamente.';
+      errorMessage.textContent = 'Não foi possível confirmar o recebimento. Tente novamente ou fale com André pelo WhatsApp.';
+      formHelp.hidden = false;
+      trackEvent('form_error');
+    } finally {
+      window.clearTimeout(timeout);
       submitButton.disabled = false;
-      submitButton.firstChild.textContent = 'Solicitar análise ';
-      console.error('Falha no envio do formulário:', error);
+      submitButton.firstChild.textContent = submitLabel;
     }
   });
 

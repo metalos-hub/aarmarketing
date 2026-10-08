@@ -3,16 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gestão de Tráfego Pago | André Rodrigues</title>
+  <title>Gestão de Tráfego Pago | AAR Marketing · André Rodrigues</title>
   <meta name="description" content="Gestão estratégica de Google Ads e Meta Ads para empresas que querem transformar mídia paga em oportunidades de negócio.">
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#070b14">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
-  <meta property="og:title" content="Gestão de Tráfego Pago | André Rodrigues">
+  <meta property="og:title" content="AAR Marketing · Gestão de Tráfego Pago com André Rodrigues">
   <meta property="og:description" content="Estratégia, mensuração e otimização para aproximar a mídia dos resultados do seu negócio.">
   <meta name="twitter:card" content="summary">
-  <link rel="canonical" href="">
+  <meta property="og:url" content="https://www.aarmarketing.tech/">
+  <meta property="og:site_name" content="AAR Marketing">
+  <link rel="canonical" href="https://www.aarmarketing.tech/">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23070b14'/%3E%3Cpath d='M14 44 27 17h9l14 27h-9l-3-7H25l-3 7h-8Zm14-14h7l-3.6-8-3.4 8Z' fill='%233b82f6'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="css/style.css">
   <script type="application/ld+json">
@@ -20,6 +22,7 @@
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "André Rodrigues",
+    "url": "https://www.aarmarketing.tech/",
     "jobTitle": "Gestor de Tráfego Pago",
     "knowsAbout": ["Google Ads", "Meta Ads", "Análise de performance", "Mensuração de conversões"]
   }
@@ -34,7 +37,7 @@
     <div class="container header-inner">
       <a class="brand" href="#inicio" aria-label="André Rodrigues — início">
         <span class="brand-mark" aria-hidden="true">AR</span>
-        <span class="brand-copy"><strong>André Rodrigues</strong><small>Performance &amp; mídia paga</small></span>
+        <span class="brand-copy"><strong>AAR Marketing</strong><small>André Rodrigues · Tráfego pago</small></span>
       </a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu">
         <span></span><span></span>
@@ -55,11 +58,11 @@
       <div class="container hero-grid">
         <div class="hero-copy reveal">
           <p class="eyebrow"><span></span> Google Ads · Meta Ads · Performance</p>
-          <h1>Sua mídia precisa gerar <em>clareza</em> — não apenas cliques.</h1>
-          <p class="hero-lead">Gestão estratégica de Google Ads e Meta Ads para empresas que querem entender melhor onde estão investindo, gerar oportunidades e tomar decisões com base em dados.</p>
+          <h1>Tráfego pago para gerar <em>oportunidades de negócio.</em></h1>
+          <p class="hero-lead">Gestão de Google Ads e Meta Ads com acompanhamento direto de André Rodrigues. Estratégia, mensuração e otimização para atrair contatos e orientar as próximas decisões.</p>
           <div class="hero-actions">
-            <a class="button button--primary" href="#analise" data-cta="hero">Solicitar análise <span aria-hidden="true">↗</span></a>
-            <a class="text-link" href="#metodo">Conhecer o método <span aria-hidden="true">↓</span></a>
+            <a class="button button--primary" href="https://wa.me/5548999001340" target="_blank" rel="noopener" data-whatsapp data-placement="hero">Falar com André <span aria-hidden="true">↗</span></a>
+            <a class="text-link" href="#analise" data-cta="hero_analysis">Solicitar análise <span aria-hidden="true">↓</span></a>
           </div>
           <p class="hero-note"><span class="status-dot"></span> Uma conversa inicial para entender sua operação, sem promessas prontas.</p>
         </div>
@@ -220,7 +223,8 @@
       </div>
     </section>
 
-    <section class="section cases" id="cases" data-track-view="case_view">
+    <!-- Reativar quando houver cases reais aprovados para publicação. -->
+    <section class="section cases" id="cases" data-track-view="case_view" hidden>
       <div class="container">
         <div class="section-heading reveal">
           <p class="eyebrow">Cases</p>
@@ -292,7 +296,8 @@
         </div>
 
         <form class="lead-form reveal" id="lead-form" novalidate>
-          <div class="form-head"><div><span id="step-label">Etapa 1 de 6</span><strong id="step-title">Onde sua empresa anuncia?</strong></div><div class="form-progress" aria-hidden="true"><i id="progress-bar"></i></div></div>
+          <div class="form-head"><div aria-live="polite" aria-atomic="true"><span id="step-label">Etapa 1 de 6</span><strong id="step-title">Onde sua empresa anuncia?</strong></div><div class="form-progress" aria-hidden="true"><i id="progress-bar"></i></div></div>
+          <p class="delivery-note" id="delivery-note">Ao terminar, você poderá levar suas respostas para uma conversa no WhatsApp.</p>
 
           <fieldset class="form-step is-active" data-step="1"><legend>Onde sua empresa anuncia atualmente?</legend><div class="option-grid">
             <label class="option"><input type="radio" name="platforms" value="Google Ads" required><span>Google Ads</span></label>
@@ -325,9 +330,16 @@
           <fieldset class="form-step" data-step="6"><legend>Como posso entrar em contato?</legend><div class="field-row"><label class="field"><span>WhatsApp</span><input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="(00) 00000-0000" required></label><label class="field"><span>E-mail</span><input type="email" name="email" autocomplete="email" placeholder="voce@empresa.com.br" required></label></div><p class="privacy-note">Ao enviar, você concorda com o tratamento das informações conforme a <a href="politica-de-privacidade.html">Política de Privacidade</a>.</p></fieldset>
 
           <p class="form-error" id="form-error" role="alert" aria-live="polite"></p>
+          <p class="form-help" id="form-help" hidden>Você também pode <a href="https://wa.me/5548999001340" target="_blank" rel="noopener" data-whatsapp data-placement="form_error">falar com André pelo WhatsApp</a>.</p>
           <div class="form-actions"><button class="button button--ghost" type="button" id="prev-step" disabled>Voltar</button><button class="button button--primary" type="button" id="next-step">Continuar <span aria-hidden="true">→</span></button><button class="button button--primary" type="submit" id="submit-form" hidden>Solicitar análise <span aria-hidden="true">↗</span></button></div>
 
           <div class="form-success" id="form-success" hidden tabindex="-1"><span>✓</span><h3>Recebi suas informações.</h3><p>Vou analisar o cenário informado e entrarei em contato para conversarmos.</p></div>
+          <div class="form-handoff" id="form-handoff" hidden tabindex="-1">
+            <h3>Sua mensagem está pronta.</h3>
+            <p>Abra a conversa e toque em <strong>Enviar</strong> no WhatsApp para concluir. Suas respostas vão junto na mensagem.</p>
+            <a class="button button--primary" id="form-whatsapp-link" href="https://wa.me/5548999001340" target="_blank" rel="noopener">Abrir WhatsApp</a>
+            <button class="button button--ghost" type="button" id="edit-answers">Voltar e editar</button>
+          </div>
         </form>
       </div>
     </section>
@@ -337,10 +349,10 @@
     </section>
   </main>
 
-  <a class="whatsapp-float" href="#" target="_blank" rel="noopener" data-whatsapp aria-label="Conversar com André pelo WhatsApp" hidden>WhatsApp</a>
+  <a class="whatsapp-float" href="https://wa.me/5548999001340" target="_blank" rel="noopener" data-whatsapp data-placement="floating" aria-label="Conversar com André pelo WhatsApp">WhatsApp</a>
 
   <footer class="site-footer">
-    <div class="container footer-grid"><div><a class="brand" href="#inicio"><span class="brand-mark">AR</span><span class="brand-copy"><strong>André Rodrigues</strong><small>Gestão de Tráfego Pago</small></span></a></div><div><span>Google Ads</span><span>Meta Ads</span><span>Performance</span></div><div><a href="politica-de-privacidade.html">Política de Privacidade</a><a href="#analise">Contato</a><span>© <span data-year></span> André Rodrigues</span></div></div>
+    <div class="container footer-grid"><div><a class="brand" href="#inicio"><span class="brand-mark">AR</span><span class="brand-copy"><strong>AAR Marketing</strong><small>André Rodrigues · Tráfego pago</small></span></a></div><div><span>Google Ads</span><span>Meta Ads</span><span>Performance</span></div><div><a href="politica-de-privacidade.html">Política de Privacidade</a><a href="https://wa.me/5548999001340" target="_blank" rel="noopener" data-whatsapp data-placement="footer">Contato pelo WhatsApp</a><span>© <span data-year></span> André Rodrigues</span></div></div>
   </footer>
 
   <script src="js/script.js" defer></script>
