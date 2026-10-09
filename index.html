@@ -49,6 +49,70 @@
       transition: top .2s;
     }
     .skip-link:focus { top: 1rem; }
+    .nav-analysis,
+    .analysis-button {
+      display: inline-flex;
+      min-height: 3rem;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: .75rem;
+      background: #2563eb;
+      color: white;
+      padding: .75rem 1.15rem;
+      font-size: .875rem;
+      font-weight: 700;
+      transition: transform .2s, background-color .2s, box-shadow .2s;
+    }
+    .nav-analysis:hover,
+    .analysis-button:hover {
+      transform: translateY(-2px);
+      background: #1d4ed8;
+      box-shadow: 0 16px 35px rgba(37,99,235,.24);
+    }
+    .nav-analysis { min-height: 2.75rem; background: rgba(37,99,235,.12); border-color: rgba(96,165,250,.35); }
+    .hero-analysis-action { margin-top: 2.5rem; }
+    .analysis-section { position: relative; overflow: hidden; background: #0a0a0a; padding: 8rem 1.5rem; }
+    .analysis-form {
+      max-width: 48rem;
+      margin: 3rem auto 0;
+      padding: clamp(1.5rem, 5vw, 3rem);
+      border: 1px solid #262626;
+      border-radius: 1.5rem;
+      background: #0c0c0c;
+      box-shadow: 0 28px 80px rgba(0,0,0,.3);
+      text-align: left;
+    }
+    .analysis-form__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+    .analysis-field { display: grid; gap: .55rem; }
+    .analysis-field--wide { grid-column: 1 / -1; }
+    .analysis-field label { color: #d1d5db; font-size: .82rem; font-weight: 600; }
+    .analysis-field input,
+    .analysis-field select,
+    .analysis-field textarea {
+      width: 100%;
+      border: 1px solid #262626;
+      border-radius: .75rem;
+      background: #171717;
+      color: #f5f5f5;
+      padding: .9rem 1rem;
+      font: inherit;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .analysis-field textarea { min-height: 7rem; resize: vertical; }
+    .analysis-field input::placeholder,
+    .analysis-field textarea::placeholder { color: #6b7280; }
+    .analysis-field input:focus,
+    .analysis-field select:focus,
+    .analysis-field textarea:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,.15); }
+    .analysis-form__footer { display: grid; gap: 1rem; margin-top: 1.5rem; }
+    .analysis-form__footer .analysis-button { width: 100%; min-height: 3.75rem; font-size: 1rem; }
+    .analysis-form__note { color: #6b7280; font-size: .75rem; line-height: 1.6; text-align: center; }
+    .analysis-form__note a { color: #9ca3af; text-decoration: underline; }
+    .analysis-handoff { margin-top: 1.25rem; border-left: 2px solid #2563eb; padding: .9rem 1rem; color: #d1d5db; background: rgba(37,99,235,.08); }
+    .analysis-handoff[hidden] { display: none; }
+    .analysis-handoff a { color: #60a5fa; font-weight: 700; text-decoration: underline; }
     .whatsapp-float {
       position: fixed;
       right: 1.25rem;
@@ -79,6 +143,10 @@
     }
     @media (max-width: 480px) {
       .whatsapp-float { right: .9rem; bottom: .9rem; }
+      .nav-analysis { min-height: 2.5rem; padding: .6rem .8rem; font-size: .75rem; }
+      .analysis-section { padding-block: 6rem; }
+      .analysis-form__grid { grid-template-columns: 1fr; }
+      .analysis-field--wide { grid-column: auto; }
     }
   </style>
 
@@ -101,7 +169,7 @@
       <a href="#inicio" class="text-2xl font-bold tracking-tighter text-white" aria-label="AAR Marketing — início">
         André<span class="text-accent">.</span>
       </a>
-      <span class="hidden text-sm font-medium text-gray-400 sm:block">Google Ads · Meta Ads</span>
+      <a href="#solicitar-analise" class="nav-analysis">Solicitar análise</a>
     </div>
   </nav>
 
@@ -119,6 +187,7 @@
         <p class="mx-auto max-w-2xl text-lg leading-relaxed text-gray-400 md:text-xl">
           Gestão de Google Ads e Meta Ads para atrair pessoas da região certa, medir o que acontece e orientar as próximas decisões do seu negócio.
         </p>
+        <div class="hero-analysis-action"><a href="#solicitar-analise" class="analysis-button">Solicitar análise</a></div>
       </div>
     </header>
 
@@ -233,11 +302,28 @@
       </div>
     </section>
 
-    <section class="relative bg-gray-900 px-6 py-32" aria-labelledby="conversa-title">
+    <section id="solicitar-analise" class="analysis-section" aria-labelledby="analise-form-title">
       <div class="pointer-events-none absolute left-1/2 top-1/2 h-96 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/20 blur-[120px]"></div>
       <div class="relative z-10 mx-auto max-w-3xl text-center">
-        <h2 id="conversa-title" class="mb-5 text-3xl font-bold md:text-5xl">Quer entender o cenário da sua empresa?</h2>
-        <p class="mx-auto max-w-2xl text-lg leading-relaxed text-gray-400">Use o botão verde do WhatsApp no canto da tela para falar diretamente comigo. A primeira conversa serve para conhecer sua operação e avaliar os próximos passos.</p>
+        <h2 id="analise-form-title" class="mb-5 text-3xl font-bold md:text-5xl">Solicite uma análise do seu cenário.</h2>
+        <p class="mx-auto max-w-2xl text-lg leading-relaxed text-gray-400">Preencha as informações principais. Ao continuar, o WhatsApp abrirá com a solicitação pronta para você revisar e enviar.</p>
+
+        <form class="analysis-form" id="analysis-form">
+          <div class="analysis-form__grid">
+            <div class="analysis-field"><label for="analysis-name">Seu nome</label><input id="analysis-name" name="name" type="text" autocomplete="name" placeholder="Como posso chamar você?" required></div>
+            <div class="analysis-field"><label for="analysis-company">Empresa</label><input id="analysis-company" name="company" type="text" autocomplete="organization" placeholder="Nome da empresa" required></div>
+            <div class="analysis-field analysis-field--wide"><label for="analysis-website">Site ou Instagram da empresa</label><input id="analysis-website" name="website" type="text" autocomplete="url" placeholder="seusite.com.br ou @empresa" required></div>
+            <div class="analysis-field"><label for="analysis-platform">Onde anuncia atualmente?</label><select id="analysis-platform" name="platform" required><option value="" selected disabled>Selecione</option><option>Google Ads</option><option>Meta Ads</option><option>Google Ads e Meta Ads</option><option>Ainda não anuncia</option></select></div>
+            <div class="analysis-field"><label for="analysis-objective">Principal objetivo</label><select id="analysis-objective" name="objective" required><option value="" selected disabled>Selecione</option><option>Gerar contatos</option><option>Gerar agendamentos</option><option>Gerar orçamentos</option><option>Gerar vendas</option><option>Outro objetivo</option></select></div>
+            <div class="analysis-field analysis-field--wide"><label for="analysis-investment">Investimento mensal em anúncios</label><select id="analysis-investment" name="investment" required><option value="" selected disabled>Selecione uma faixa</option><option>Ainda não invisto</option><option>Até R$ 2.000</option><option>De R$ 2.000 a R$ 5.000</option><option>De R$ 5.000 a R$ 15.000</option><option>Acima de R$ 15.000</option></select></div>
+            <div class="analysis-field analysis-field--wide"><label for="analysis-context">Contexto adicional <span class="text-gray-500">(opcional)</span></label><textarea id="analysis-context" name="context" maxlength="500" placeholder="Conte brevemente o que você gostaria de melhorar."></textarea></div>
+          </div>
+          <div class="analysis-form__footer">
+            <button type="submit" class="analysis-button">Solicitar análise no WhatsApp</button>
+            <p class="analysis-form__note">Os dados não são enviados pelo site. Ao continuar, eles serão inseridos em uma mensagem no WhatsApp; a solicitação só será enviada quando você tocar em <strong>Enviar</strong>. Consulte a <a href="politica-de-privacidade.html">Política de Privacidade</a>.</p>
+          </div>
+          <p class="analysis-handoff" id="analysis-handoff" hidden aria-live="polite">Se o WhatsApp não abrir automaticamente, <a id="analysis-whatsapp-link" href="https://wa.me/5548999001340" target="_blank" rel="noopener">continue por aqui</a>.</p>
+        </form>
       </div>
     </section>
   </main>
@@ -260,6 +346,33 @@
       if (window.lucide) window.lucide.createIcons();
       const year = document.querySelector('#current-year');
       if (year) year.textContent = new Date().getFullYear();
+
+      const form = document.querySelector('#analysis-form');
+      const handoff = document.querySelector('#analysis-handoff');
+      const handoffLink = document.querySelector('#analysis-whatsapp-link');
+
+      form?.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!form.reportValidity()) return;
+
+        const data = new FormData(form);
+        const context = String(data.get('context') || '').trim();
+        const message = [
+          'Olá André! Gostaria de solicitar uma análise do meu cenário.',
+          '',
+          `Nome: ${String(data.get('name')).trim()}`,
+          `Empresa: ${String(data.get('company')).trim()}`,
+          `Site/Instagram: ${String(data.get('website')).trim()}`,
+          `Anuncia atualmente: ${String(data.get('platform')).trim()}`,
+          `Objetivo: ${String(data.get('objective')).trim()}`,
+          `Investimento mensal: ${String(data.get('investment')).trim()}`,
+          ...(context ? [`Contexto: ${context}`] : [])
+        ].join('\n');
+        const whatsappUrl = `https://wa.me/5548999001340?text=${encodeURIComponent(message)}`;
+        handoffLink.href = whatsappUrl;
+        handoff.hidden = false;
+        window.open(whatsappUrl, '_blank', 'noopener');
+      });
     });
   </script>
 </body>
