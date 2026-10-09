@@ -1,22 +1,87 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gestão de Tráfego para Negócios Locais | AAR Marketing</title>
-  <meta name="description" content="Gestão de Google Ads e Meta Ads para negócios locais e empresas de serviços atraírem contatos da própria região, com acompanhamento direto de André Rodrigues.">
+  <meta name="description" content="Gestão de Google Ads e Meta Ads para negócios locais e empresas de serviços, com estratégia, mensuração e acompanhamento direto de André Rodrigues.">
   <meta name="robots" content="index,follow">
-  <meta name="theme-color" content="#070b14">
+  <meta name="theme-color" content="#0a0a0a">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:title" content="AAR Marketing · Tráfego pago para negócios locais">
-  <meta property="og:description" content="Google Ads e Meta Ads para atrair contatos da sua região, com estratégia, mensuração e acompanhamento direto.">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:description" content="Google Ads e Meta Ads para negócios locais, com estratégia, mensuração e acompanhamento direto.">
   <meta property="og:url" content="https://www.aarmarketing.tech/">
   <meta property="og:site_name" content="AAR Marketing">
+  <meta property="og:image" content="https://www.aarmarketing.tech/img/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://www.aarmarketing.tech/">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23070b14'/%3E%3Cpath d='M14 44 27 17h9l14 27h-9l-3-7H25l-3 7h-8Zm14-14h7l-3.6-8-3.4 8Z' fill='%233b82f6'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="css/style.css?v=20261009-1">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230a0a0a'/%3E%3Cpath d='M14 44 27 17h9l14 27h-9l-3-7H25l-3 7h-8Zm14-14h7l-3.6-8-3.4 8Z' fill='%232563eb'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/performance.css?v=20261009-1">
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: #f5f5f5;
+      -webkit-font-smoothing: antialiased;
+    }
+    .bg-grid {
+      background-size: 40px 40px;
+      background-image:
+        linear-gradient(to right, rgba(255, 255, 255, .05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, .05) 1px, transparent 1px);
+    }
+    .skip-link {
+      position: fixed;
+      top: -5rem;
+      left: 1rem;
+      z-index: 100;
+      border-radius: .75rem;
+      background: #fff;
+      color: #0a0a0a;
+      padding: .75rem 1rem;
+      font-weight: 700;
+      transition: top .2s;
+    }
+    .skip-link:focus { top: 1rem; }
+    .whatsapp-float {
+      position: fixed;
+      right: 1.25rem;
+      bottom: 1.25rem;
+      z-index: 60;
+      display: inline-flex;
+      min-height: 3.5rem;
+      align-items: center;
+      gap: .65rem;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 999px;
+      background: #16a34a;
+      color: white;
+      padding: .85rem 1.1rem;
+      font-size: .875rem;
+      font-weight: 700;
+      box-shadow: 0 18px 45px rgba(0,0,0,.38);
+      transition: transform .2s, background-color .2s, box-shadow .2s;
+    }
+    .whatsapp-float:hover {
+      transform: translateY(-2px);
+      background: #15803d;
+      box-shadow: 0 22px 50px rgba(22,163,74,.25);
+    }
+    .whatsapp-float:focus-visible {
+      outline: 3px solid rgba(134,239,172,.65);
+      outline-offset: 3px;
+    }
+    @media (max-width: 480px) {
+      .whatsapp-float { right: .9rem; bottom: .9rem; }
+    }
+  </style>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -28,285 +93,174 @@
   }
   </script>
 </head>
-<body>
+<body class="font-sans antialiased selection:bg-accent selection:text-white">
   <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
-  <div class="page-glow page-glow--one" aria-hidden="true"></div>
-  <div class="page-glow page-glow--two" aria-hidden="true"></div>
 
-  <header class="site-header" data-header>
-    <div class="container header-inner">
-      <a class="brand" href="#inicio" aria-label="André Rodrigues — início">
-        <span class="brand-mark" aria-hidden="true">AR</span>
-        <span class="brand-copy"><strong>AAR Marketing</strong><small>André Rodrigues · Tráfego pago</small></span>
+  <nav class="fixed top-0 z-50 w-full border-b border-gray-800 bg-gray-900/80 backdrop-blur-md" aria-label="Navegação principal">
+    <div class="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
+      <a href="#inicio" class="text-2xl font-bold tracking-tighter text-white" aria-label="AAR Marketing — início">
+        André<span class="text-accent">.</span>
       </a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu">
-        <span></span><span></span>
-      </button>
-      <nav class="main-nav" id="main-nav" aria-label="Navegação principal">
-        <a href="#metodo">Método</a>
-        <a href="#plataformas">Plataformas</a>
-        <a href="#para-quem">Para quem</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#faq">FAQ</a>
-        <a class="button button--small" href="#analise" data-cta="header">Solicitar análise</a>
-      </nav>
+      <span class="hidden text-sm font-medium text-gray-400 sm:block">Google Ads · Meta Ads</span>
     </div>
-  </header>
+  </nav>
 
   <main id="conteudo">
-    <section class="hero section" id="inicio">
-      <div class="container hero-grid">
-        <div class="hero-copy reveal">
-          <p class="eyebrow"><span></span> Gestão de tráfego para negócios locais</p>
-          <h1>Pare de investir em <em>cliques que não viram oportunidades.</em></h1>
-          <p class="hero-lead">Gestão de Google Ads e Meta Ads para negócios locais e empresas de serviços atraírem pessoas da própria região, com acompanhamento direto de André Rodrigues.</p>
-          <div class="hero-actions">
-            <a class="button button--primary" href="https://wa.me/5548999001340" target="_blank" rel="noopener" data-whatsapp data-placement="hero">Falar com André <span aria-hidden="true">↗</span></a>
-            <a class="text-link" href="#analise" data-cta="hero_analysis">Solicitar uma análise <span aria-hidden="true">↓</span></a>
-          </div>
-          <p class="hero-note"><span class="status-dot"></span> Uma conversa inicial para entender sua operação, sem promessas prontas.</p>
+    <header id="inicio" class="bg-grid relative overflow-hidden px-6 pb-20 pt-40 md:pb-32 md:pt-52">
+      <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent to-gray-900"></div>
+      <div class="relative z-10 mx-auto max-w-4xl text-center">
+        <div class="mb-8 inline-flex items-center gap-2 rounded-full border border-gray-700 bg-gray-800 px-3 py-1 text-sm text-gray-300 shadow-sm">
+          <span class="h-2 w-2 animate-pulse rounded-full bg-accent"></span>
+          Gestão de tráfego para negócios locais
         </div>
-
+        <h1 class="mb-8 text-4xl font-extrabold leading-[1.1] tracking-tight md:text-6xl lg:text-7xl">
+          Pare de investir em <span class="bg-gradient-to-r from-accent to-blue-400 bg-clip-text text-transparent">cliques sem direção.</span>
+        </h1>
+        <p class="mx-auto max-w-2xl text-lg leading-relaxed text-gray-400 md:text-xl">
+          Gestão de Google Ads e Meta Ads para atrair pessoas da região certa, medir o que acontece e orientar as próximas decisões do seu negócio.
+        </p>
       </div>
-    </section>
+    </header>
 
-    <section class="platform-strip" aria-label="Especialidades">
-      <div class="container platform-strip__inner">
-        <p>Estratégia para operações que atendem uma região definida</p>
-        <div class="platform-tags"><span>Clínicas e consultórios</span><span>Serviços locais</span><span>Negócios com agenda</span></div>
-      </div>
-    </section>
-
-    <section class="section problem" id="como-funciona">
-      <div class="container">
-        <div class="section-heading section-heading--wide reveal">
-          <p class="eyebrow">O que precisa mudar</p>
-          <h2>O investimento em mídia precisa ajudar o negócio a avançar.</h2>
-          <p>Cliques e mensagens só ganham valor quando vêm das pessoas certas e ajudam a criar oportunidades comerciais reais.</p>
-        </div>
-        <div class="problem-grid">
-          <article class="problem-card reveal"><span>01</span><h3>Contatos fora da região</h3><p>A segmentação precisa considerar onde o negócio realmente consegue atender, vender ou receber clientes.</p></article>
-          <article class="problem-card reveal"><span>02</span><h3>Métricas sem contexto</h3><p>CPC, CTR e alcance ajudam na leitura, mas não explicam sozinhos a qualidade dos contatos gerados.</p></article>
-          <article class="problem-card reveal"><span>03</span><h3>Campanhas sem direção</h3><p>Mais anúncios não substituem uma oferta clara, mensuração confiável e critérios para decidir o próximo passo.</p></article>
+    <section class="border-y border-gray-800 bg-gray-900/50 py-12" aria-labelledby="segmentos-title">
+      <div class="mx-auto max-w-6xl px-6 text-center">
+        <p id="segmentos-title" class="mb-8 text-sm font-semibold uppercase tracking-widest text-gray-500">Estratégia para operações regionais</p>
+        <div class="flex flex-wrap justify-center gap-8 opacity-70 md:gap-16">
+          <div class="flex items-center gap-2 text-xl font-bold text-gray-300"><i data-lucide="stethoscope" class="h-6 w-6" aria-hidden="true"></i>Clínicas e consultórios</div>
+          <div class="flex items-center gap-2 text-xl font-bold text-gray-300"><i data-lucide="store" class="h-6 w-6" aria-hidden="true"></i>Serviços locais</div>
+          <div class="flex items-center gap-2 text-xl font-bold text-gray-300"><i data-lucide="calendar-check" class="h-6 w-6" aria-hidden="true"></i>Negócios com agenda</div>
         </div>
       </div>
     </section>
 
-    <section class="section bridge">
-      <div class="container bridge-grid">
-        <div class="bridge-title reveal">
-          <p class="eyebrow">Estratégia local</p>
-          <h2>Definir um raio no mapa é apenas o começo.</h2>
+    <section class="bg-gray-900 px-6 py-24" aria-labelledby="problema-title">
+      <div class="mx-auto max-w-6xl">
+        <div class="mb-16">
+          <h2 id="problema-title" class="mb-4 text-3xl font-bold md:text-5xl">Seu investimento em mídia está criando <span class="text-red-400">oportunidades reais?</span></h2>
+          <p class="max-w-xl text-lg text-gray-400">Cliques e mensagens só ganham valor quando vêm das pessoas certas e ajudam a avançar o processo comercial.</p>
         </div>
-        <div class="bridge-copy reveal">
-          <p>Oferta, intenção de busca, público, capacidade de atendimento e processo comercial precisam trabalhar juntos.</p>
-          <p>É essa leitura que transforma mídia em decisões mais claras para o negócio.</p>
-        </div>
-      </div>
-    </section>
 
-    <section class="section method" id="metodo">
-      <div class="container">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Como o trabalho acontece</p>
-          <h2>Estratégia, execução e acompanhamento no mesmo processo.</h2>
-          <p>Cada etapa parte do contexto real da empresa e orienta a próxima decisão.</p>
-        </div>
-        <ol class="method-list">
-          <li class="reveal"><span>01</span><div><h3>Diagnóstico local</h3><p>Entendimento do negócio, da área atendida, da oferta, da conta e dos objetivos.</p></div></li>
-          <li class="reveal"><span>02</span><div><h3>Estrutura e mensuração</h3><p>Organização dos sinais de conversão e da base necessária para interpretar os contatos.</p></div></li>
-          <li class="reveal"><span>03</span><div><h3>Campanhas</h3><p>Definição de canais, segmentações, anúncios, prioridades e orçamento.</p></div></li>
-          <li class="reveal"><span>04</span><div><h3>Otimização</h3><p>Análise contínua, testes e ajustes orientados pelos dados disponíveis.</p></div></li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="section channels" id="plataformas">
-      <div class="container">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Canais com funções diferentes</p>
-          <h2>A plataforma certa depende do momento da demanda.</h2>
-        </div>
-        <div class="channel-grid">
-          <article class="channel-card channel-card--google reveal" data-track-view="google_ads_section_view">
-            <div class="channel-card__top"><span class="channel-logo">G</span><span class="badge">Google Ads</span></div>
-            <h3>Capture a demanda que já existe.</h3>
-            <p>Alcance pessoas que estão procurando ativamente por uma solução. A estrutura pode combinar pesquisa, Performance Max, remarketing ou YouTube, de acordo com o contexto.</p>
-            <ul><li>Intenção de busca</li><li>Demanda ativa</li><li>Conversões mensuráveis</li></ul>
+        <div class="grid gap-8 md:grid-cols-3">
+          <article class="rounded-2xl border border-gray-800 bg-gray-800/50 p-8 transition-colors hover:bg-gray-800">
+            <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-red-500/10"><i data-lucide="map-pin-off" class="h-6 w-6 text-red-400" aria-hidden="true"></i></div>
+            <h3 class="mb-3 text-xl font-semibold">Contatos fora da região</h3>
+            <p class="leading-relaxed text-gray-400">Uma segmentação ampla demais pode consumir verba com pessoas que o negócio não consegue atender.</p>
           </article>
-          <article class="channel-card channel-card--meta reveal" data-track-view="meta_ads_section_view">
-            <div class="channel-card__top"><span class="channel-logo channel-logo--meta">M</span><span class="badge">Meta Ads</span></div>
-            <h3>Encontre e desenvolva demanda.</h3>
-            <p>Use Facebook e Instagram para apresentar uma solução, gerar interesse, captar contatos e voltar a falar com públicos que já demonstraram intenção.</p>
-            <ul><li>Descoberta</li><li>Geração de interesse</li><li>Remarketing</li></ul>
+          <article class="rounded-2xl border border-gray-800 bg-gray-800/50 p-8 transition-colors hover:bg-gray-800">
+            <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-red-500/10"><i data-lucide="bar-chart-big" class="h-6 w-6 text-red-400" aria-hidden="true"></i></div>
+            <h3 class="mb-3 text-xl font-semibold">Métricas sem contexto</h3>
+            <p class="leading-relaxed text-gray-400">Alcance, cliques e CTR ajudam na análise, mas não explicam sozinhos a qualidade dos contatos.</p>
+          </article>
+          <article class="rounded-2xl border border-gray-800 bg-gray-800/50 p-8 transition-colors hover:bg-gray-800">
+            <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-red-500/10"><i data-lucide="route-off" class="h-6 w-6 text-red-400" aria-hidden="true"></i></div>
+            <h3 class="mb-3 text-xl font-semibold">Campanhas sem direção</h3>
+            <p class="leading-relaxed text-gray-400">Sem oferta clara, mensuração e critérios de decisão, fica difícil saber o que manter ou ajustar.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section metrics">
-      <div class="container metrics-grid">
-        <div class="metrics-copy reveal">
-          <p class="eyebrow">Leitura de performance</p>
-          <h2>Cliques são parte da história. Não o resultado final.</h2>
-          <p>CPC, CPM e CTR ajudam a interpretar uma campanha. Mas ganham sentido quando observados dentro da jornada que o negócio realmente precisa construir.</p>
-          <p class="metrics-note">Quando os dados comerciais estão disponíveis, a análise pode se aproximar de qualidade do lead, oportunidade, agendamento, venda e receita.</p>
+    <section id="processo" class="border-y border-gray-800 bg-[#0c0c0c] px-6 py-24" aria-labelledby="processo-title">
+      <div class="mx-auto max-w-6xl">
+        <div class="mb-16 text-center">
+          <h2 id="processo-title" class="mb-4 text-3xl font-bold md:text-5xl">Como eu <span class="text-accent">organizo o trabalho.</span></h2>
+          <p class="mx-auto max-w-2xl text-lg text-gray-400">A estratégia parte do contexto da empresa e evolui conforme os dados disponíveis.</p>
         </div>
-        <div class="funnel-card reveal" aria-label="Jornada entre mídia e resultado">
-          <div><span>01</span><strong>Impressão</strong><small>A mensagem foi exibida</small></div>
-          <div><span>02</span><strong>Clique</strong><small>Houve interesse inicial</small></div>
-          <div><span>03</span><strong>Lead</strong><small>O contato foi gerado</small></div>
-          <div><span>04</span><strong>Oportunidade</strong><small>Existe potencial comercial</small></div>
-          <div class="funnel-card__final"><span>05</span><strong>Cliente</strong><small>O resultado aconteceu</small></div>
-        </div>
-      </div>
-    </section>
 
-    <section class="section differentials">
-      <div class="container">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Forma de trabalhar</p>
-          <h2>Gestão próxima. Decisões baseadas em contexto.</h2>
-        </div>
-        <div class="differential-grid">
-          <article class="reveal"><span>↗</span><h3>Contato direto</h3><p>Você conversa com o profissional responsável pela estratégia e pelo acompanhamento da mídia.</p></article>
-          <article class="reveal"><span>◎</span><h3>Análise contínua</h3><p>As campanhas não são configuradas e esquecidas. Existe leitura, documentação e evolução.</p></article>
-          <article class="reveal"><span>◇</span><h3>Contexto de negócio</h3><p>Os dados são interpretados considerando objetivo, mercado e momento da empresa.</p></article>
-          <article class="reveal"><span>≋</span><h3>Transparência</h3><p>O acompanhamento precisa ajudar o cliente a compreender o que está acontecendo.</p></article>
+        <div class="grid gap-10 md:grid-cols-2 md:gap-12">
+          <article class="flex items-start gap-6">
+            <div class="mt-1 flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl border border-accent/20 bg-accent/10"><i data-lucide="crosshair" class="h-7 w-7 text-accent" aria-hidden="true"></i></div>
+            <div><h3 class="mb-3 text-2xl font-bold">Estratégia local</h3><p class="text-lg leading-relaxed text-gray-400">Região atendida, intenção de busca, perfil do público, oferta e capacidade de atendimento ajudam a definir onde e como anunciar.</p></div>
+          </article>
+          <article class="flex items-start gap-6">
+            <div class="mt-1 flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl border border-accent/20 bg-accent/10"><i data-lucide="line-chart" class="h-7 w-7 text-accent" aria-hidden="true"></i></div>
+            <div><h3 class="mb-3 text-2xl font-bold">Mensuração e otimização</h3><p class="text-lg leading-relaxed text-gray-400">As campanhas são acompanhadas e ajustadas com base nos sinais disponíveis, sem tratar uma métrica isolada como resultado final.</p></div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="section audience" id="para-quem">
-      <div class="container audience-grid">
-        <div class="audience-copy reveal">
-          <p class="eyebrow">Para quem é</p>
-          <h2>Para negócios que dependem de clientes da própria região.</h2>
-          <p>Operações que usam contatos, agendamentos, orçamentos ou visitas como parte importante do processo comercial.</p>
-          <a class="text-link" href="#analise">Quero analisar meu cenário <span aria-hidden="true">↗</span></a>
-        </div>
-        <div class="audience-cloud reveal" aria-label="Exemplos de operações compatíveis">
-          <span>Clínicas e consultórios</span><span>Serviços especializados</span><span>Negócios com agenda</span><span>Imobiliárias</span><span>Arquitetura</span><span>Franquias</span><span>Serviços B2B regionais</span><span>Geração de contatos</span>
-        </div>
-      </div>
-    </section>
+    <section class="bg-gray-900 px-6 py-24" aria-labelledby="analise-title">
+      <div class="mx-auto max-w-6xl">
+        <h2 id="analise-title" class="mb-16 text-center text-3xl font-bold md:text-5xl">Decisões construídas com <span class="text-gray-400">contexto.</span></h2>
 
-    <!-- Reativar quando houver cases reais aprovados para publicação. -->
-    <section class="section cases" id="cases" data-track-view="case_view" hidden>
-      <div class="container">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Cases</p>
-          <h2>Performance precisa ser demonstrada com contexto.</h2>
-          <p>Resultados serão publicados somente com dados reais e autorização. Cada case seguirá a mesma lógica: cenário, hipótese, estratégia e impacto observado.</p>
-        </div>
-        <div class="case-grid">
-          <article class="case-card reveal"><span class="badge">Google Ads</span><h3>Case em preparação</h3><p>Espaço reservado para um projeto real, sem números ou marcas fictícias.</p><div class="case-structure"><span>Contexto</span><span>Hipótese</span><span>Estratégia</span><span>Resultado</span></div></article>
-          <article class="case-card reveal"><span class="badge">Meta Ads</span><h3>Case em preparação</h3><p>Espaço reservado para um projeto real, sem números ou marcas fictícias.</p><div class="case-structure"><span>Contexto</span><span>Hipótese</span><span>Estratégia</span><span>Resultado</span></div></article>
-          <article class="case-card reveal"><span class="badge">Geração de leads</span><h3>Case em preparação</h3><p>Espaço reservado para um projeto real, sem números ou marcas fictícias.</p><div class="case-structure"><span>Contexto</span><span>Hipótese</span><span>Estratégia</span><span>Resultado</span></div></article>
-        </div>
-      </div>
-    </section>
+        <div class="grid gap-8 md:grid-cols-2">
+          <article class="group relative overflow-hidden rounded-3xl border border-gray-700 bg-gray-800/30 p-8 md:p-10">
+            <div class="absolute right-0 top-0 -z-10 h-32 w-32 rounded-bl-full bg-accent/10 transition-colors group-hover:bg-accent/20"></div>
+            <div class="mb-4 text-sm font-semibold uppercase tracking-widest text-accent">Leitura 01</div>
+            <h3 class="mb-2 text-2xl font-bold">Demanda local</h3>
+            <p class="mb-8 border-b border-gray-700 pb-8 text-gray-400">Onde a empresa atende e como as pessoas procuram pelo serviço.</p>
+            <div class="space-y-6">
+              <div><span class="mb-1 block text-sm font-medium text-gray-500">O que observar:</span><p class="text-gray-300">Região, termos de busca, oferta, concorrência e limitações reais de atendimento.</p></div>
+              <div><span class="mb-1 block text-sm font-medium text-gray-500">Como isso orienta a mídia:</span><p class="border-l-2 border-accent pl-4 text-lg font-medium text-white">Segmentações, anúncios e orçamento são organizados de acordo com o cenário encontrado.</p></div>
+            </div>
+          </article>
 
-    <section class="section about" id="sobre">
-      <div class="container about-grid">
-        <div class="about-portrait reveal">
-          <img class="portrait-photo" src="img/andre-rodrigues-retrato.jpg" width="800" height="1000" loading="lazy" decoding="async" alt="Retrato profissional de André Rodrigues">
-          <div class="portrait-caption"><strong>André Rodrigues</strong><span>Gestão de Tráfego Pago</span></div>
-        </div>
-        <div class="about-copy reveal">
-          <p class="eyebrow">Quem está por trás das campanhas</p>
-          <h2>Você fala diretamente com quem cuida das campanhas.</h2>
-          <p>Sou André Rodrigues, gestor de tráfego especializado em Google Ads e Meta Ads. Acompanho a estratégia, a execução e a leitura dos dados da sua operação.</p>
-          <p>O objetivo é conectar as decisões de mídia à realidade do negócio, com comunicação simples, acompanhamento próximo e sem promessas prontas.</p>
-          <div class="about-tags"><span>Google Ads</span><span>Meta Ads</span><span>Performance</span><span>Analytics</span></div>
+          <article class="group relative overflow-hidden rounded-3xl border border-gray-700 bg-gray-800/30 p-8 md:p-10">
+            <div class="absolute right-0 top-0 -z-10 h-32 w-32 rounded-bl-full bg-accent/10 transition-colors group-hover:bg-accent/20"></div>
+            <div class="mb-4 text-sm font-semibold uppercase tracking-widest text-accent">Leitura 02</div>
+            <h3 class="mb-2 text-2xl font-bold">Jornada até o contato</h3>
+            <p class="mb-8 border-b border-gray-700 pb-8 text-gray-400">O caminho entre o anúncio, a página e a conversa comercial.</p>
+            <div class="space-y-6">
+              <div><span class="mb-1 block text-sm font-medium text-gray-500">O que observar:</span><p class="text-gray-300">Cliques, ações no site, contatos, agendamentos e vendas, conforme os dados disponíveis.</p></div>
+              <div><span class="mb-1 block text-sm font-medium text-gray-500">Como isso orienta a mídia:</span><p class="border-l-2 border-accent pl-4 text-lg font-medium text-white">A leitura ajuda a identificar gargalos e escolher quais ajustes testar primeiro.</p></div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="section faq" id="faq">
-      <div class="container faq-grid">
-        <div class="faq-intro reveal"><p class="eyebrow">Perguntas frequentes</p><h2>O que vale esclarecer antes da conversa.</h2><p>Sem respostas genéricas ou promessas de prazo.</p></div>
-        <div class="faq-list reveal">
-          <details><summary>Quanto preciso investir em anúncios?<span>+</span></summary><p>Depende do mercado, da região, do objetivo e da capacidade de atendimento. A conversa inicial serve para avaliar se existe uma faixa de investimento coerente com o cenário.</p></details>
-          <details><summary>Você trabalha com Google Ads e Meta Ads?<span>+</span></summary><p>Sim. A escolha entre uma ou ambas as plataformas depende de onde a demanda está e de como o público toma a decisão.</p></details>
-          <details><summary>Já tenho campanhas rodando. Você consegue assumir?<span>+</span></summary><p>Sim. Antes de qualquer mudança, a estrutura atual é analisada para preservar histórico útil e identificar prioridades.</p></details>
-          <details><summary>Você também verifica as conversões?<span>+</span></summary><p>A mensuração faz parte da análise. O escopo técnico necessário depende do site, das ferramentas e da estrutura já existente.</p></details>
-          <details><summary>O investimento em mídia está incluso na gestão?<span>+</span></summary><p>Normalmente, o valor pago às plataformas é separado do serviço de gestão. Condições e escopo são apresentados de forma clara na proposta.</p></details>
-          <details><summary>Quanto tempo leva para uma campanha trazer resultados?<span>+</span></summary><p>Não existe prazo universal. Histórico, demanda, oferta, verba, concorrência, página e processo comercial influenciam o resultado. Por isso, não trabalho com promessas prontas.</p></details>
-          <details><summary>Existe contrato mínimo? E quem cria os anúncios?<span>+</span></summary><p>Esses pontos dependem do escopo de cada projeto e são definidos na conversa inicial, antes de qualquer contratação.</p></details>
-        </div>
-      </div>
-    </section>
-
-    <section class="section analysis" id="analise">
-      <div class="container analysis-grid">
-        <div class="analysis-copy reveal">
-          <p class="eyebrow">Solicite uma análise</p>
-          <h2>Vamos entender sua região, sua oferta e o cenário atual da mídia.</h2>
-          <p>Responda algumas perguntas rápidas para levar o contexto da sua empresa à primeira conversa.</p>
-          <div class="analysis-points"><span><i>✓</i> Uma pergunta por etapa</span><span><i>✓</i> Sem pedido de faturamento</span><span><i>✓</i> Sem compromisso de contratação</span></div>
+    <section class="border-y border-gray-800 bg-[#0c0c0c] px-6 py-24" aria-labelledby="sobre-title">
+      <div class="mx-auto flex max-w-5xl flex-col items-center gap-12 md:flex-row md:gap-20">
+        <div class="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-gray-700 md:w-1/3">
+          <img src="img/andre-rodrigues-retrato.jpg" width="800" height="1000" loading="lazy" decoding="async" alt="Retrato profissional de André Rodrigues" class="h-full w-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0c0c0c]/70 via-transparent to-transparent"></div>
         </div>
 
-        <form class="lead-form reveal" id="lead-form" novalidate>
-          <div class="form-head"><div aria-live="polite" aria-atomic="true"><span id="step-label">Etapa 1 de 6</span><strong id="step-title">Onde sua empresa anuncia?</strong></div><div class="form-progress" aria-hidden="true"><i id="progress-bar"></i></div></div>
-          <p class="delivery-note" id="delivery-note">Ao terminar, você poderá levar suas respostas para uma conversa no WhatsApp.</p>
-
-          <fieldset class="form-step is-active" data-step="1"><legend>Onde sua empresa anuncia atualmente?</legend><div class="option-grid">
-            <label class="option"><input type="radio" name="platforms" value="Google Ads" required><span>Google Ads</span></label>
-            <label class="option"><input type="radio" name="platforms" value="Meta Ads"><span>Meta Ads</span></label>
-            <label class="option"><input type="radio" name="platforms" value="Google + Meta"><span>Google + Meta</span></label>
-            <label class="option"><input type="radio" name="platforms" value="Ainda não anuncia"><span>Ainda não anuncia</span></label>
-          </div></fieldset>
-
-          <fieldset class="form-step" data-step="2"><legend>Qual é o principal objetivo?</legend><div class="option-grid">
-            <label class="option"><input type="radio" name="objective" value="Gerar leads" required><span>Gerar leads</span></label>
-            <label class="option"><input type="radio" name="objective" value="Gerar agendamentos"><span>Gerar agendamentos</span></label>
-            <label class="option"><input type="radio" name="objective" value="Gerar vendas"><span>Gerar vendas</span></label>
-            <label class="option"><input type="radio" name="objective" value="Receber contatos pelo WhatsApp"><span>Contatos pelo WhatsApp</span></label>
-            <label class="option"><input type="radio" name="objective" value="Outro"><span>Outro objetivo</span></label>
-          </div></fieldset>
-
-          <fieldset class="form-step" data-step="3"><legend>Quanto a empresa investe em mídia por mês?</legend><div class="option-grid option-grid--investment">
-            <label class="option"><input type="radio" name="monthlyMediaInvestment" value="Ainda não invisto" required><span>Ainda não invisto</span></label>
-            <label class="option"><input type="radio" name="monthlyMediaInvestment" value="Até R$ 2.000"><span>Até R$ 2.000</span></label>
-            <label class="option"><input type="radio" name="monthlyMediaInvestment" value="R$ 2.000 a R$ 5.000"><span>R$ 2.000 – R$ 5.000</span></label>
-            <label class="option"><input type="radio" name="monthlyMediaInvestment" value="R$ 5.000 a R$ 15.000"><span>R$ 5.000 – R$ 15.000</span></label>
-            <label class="option"><input type="radio" name="monthlyMediaInvestment" value="R$ 15.000 a R$ 30.000"><span>R$ 15.000 – R$ 30.000</span></label>
-            <label class="option"><input type="radio" name="monthlyMediaInvestment" value="Acima de R$ 30.000"><span>Acima de R$ 30.000</span></label>
-          </div></fieldset>
-
-          <fieldset class="form-step" data-step="4"><legend>Qual é o site ou Instagram da empresa?</legend><label class="field"><span>Site ou Instagram</span><input type="text" name="website" autocomplete="url" placeholder="exemplo.com.br ou @empresa" required></label></fieldset>
-
-          <fieldset class="form-step" data-step="5"><legend>Agora, conte quem está falando.</legend><div class="field-row"><label class="field"><span>Seu nome</span><input type="text" name="name" autocomplete="name" placeholder="Como posso chamar você?" required></label><label class="field"><span>Empresa</span><input type="text" name="company" autocomplete="organization" placeholder="Nome da empresa" required></label></div></fieldset>
-
-          <fieldset class="form-step" data-step="6"><legend>Como posso entrar em contato?</legend><div class="field-row"><label class="field"><span>WhatsApp</span><input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="(00) 00000-0000" required></label><label class="field"><span>E-mail</span><input type="email" name="email" autocomplete="email" placeholder="voce@empresa.com.br" required></label></div><p class="privacy-note">Ao enviar, você concorda com o tratamento das informações conforme a <a href="politica-de-privacidade.html">Política de Privacidade</a>.</p></fieldset>
-
-          <p class="form-error" id="form-error" role="alert" aria-live="polite"></p>
-          <p class="form-help" id="form-help" hidden>Você também pode <a href="https://wa.me/5548999001340" target="_blank" rel="noopener" data-whatsapp data-placement="form_error">falar com André pelo WhatsApp</a>.</p>
-          <div class="form-actions"><button class="button button--ghost" type="button" id="prev-step" disabled>Voltar</button><button class="button button--primary" type="button" id="next-step">Continuar <span aria-hidden="true">→</span></button><button class="button button--primary" type="submit" id="submit-form" hidden>Solicitar análise <span aria-hidden="true">↗</span></button></div>
-
-          <div class="form-success" id="form-success" hidden tabindex="-1"><span>✓</span><h3>Recebi suas informações.</h3><p>Vou analisar o cenário informado e entrarei em contato para conversarmos.</p></div>
-          <div class="form-handoff" id="form-handoff" hidden tabindex="-1">
-            <h3>Sua mensagem está pronta.</h3>
-            <p>Abra a conversa e toque em <strong>Enviar</strong> no WhatsApp para concluir. Suas respostas vão junto na mensagem.</p>
-            <a class="button button--primary" id="form-whatsapp-link" href="https://wa.me/5548999001340" target="_blank" rel="noopener">Abrir WhatsApp</a>
-            <button class="button button--ghost" type="button" id="edit-answers">Voltar e editar</button>
+        <div class="w-full md:w-2/3">
+          <h2 id="sobre-title" class="mb-6 text-3xl font-bold md:text-5xl">Quem gerencia seu <span class="text-gray-400">investimento?</span></h2>
+          <div class="space-y-6 text-lg leading-relaxed text-gray-400">
+            <p>Sou <strong class="text-white">André Rodrigues</strong>, gestor de tráfego especializado em Google Ads e Meta Ads.</p>
+            <p>Acompanho a estratégia, a execução e a leitura dos dados, considerando a região, a oferta e o momento de cada operação.</p>
+            <p>O contato é direto com quem cuida das campanhas, com comunicação simples e sem promessas de resultado antes de analisar o cenário.</p>
           </div>
-        </form>
+
+          <div class="mt-10 flex items-center gap-4 border-t border-gray-800 pt-8">
+            <div class="border-r border-gray-800 pr-6 text-center"><div class="mb-1 text-xl font-bold text-white sm:text-2xl">Google Ads</div><div class="text-xs uppercase tracking-wide text-gray-500 sm:text-sm">Demanda ativa</div></div>
+            <div class="px-2 text-center sm:px-6"><div class="mb-1 text-xl font-bold text-white sm:text-2xl">Meta Ads</div><div class="text-xs uppercase tracking-wide text-gray-500 sm:text-sm">Geração de interesse</div></div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="final-cta">
-      <div class="container final-cta__inner reveal"><div><p class="eyebrow">Próximo passo</p><h2>Quer atrair mais contatos da sua região com campanhas mais bem direcionadas?</h2><p>Conte um pouco sobre sua operação. Leva poucos minutos.</p></div><a class="button button--light" href="#analise" data-cta="final">Solicitar análise <span aria-hidden="true">↗</span></a></div>
+    <section class="relative bg-gray-900 px-6 py-32" aria-labelledby="conversa-title">
+      <div class="pointer-events-none absolute left-1/2 top-1/2 h-96 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/20 blur-[120px]"></div>
+      <div class="relative z-10 mx-auto max-w-3xl text-center">
+        <h2 id="conversa-title" class="mb-5 text-3xl font-bold md:text-5xl">Quer entender o cenário da sua empresa?</h2>
+        <p class="mx-auto max-w-2xl text-lg leading-relaxed text-gray-400">Use o botão verde do WhatsApp no canto da tela para falar diretamente comigo. A primeira conversa serve para conhecer sua operação e avaliar os próximos passos.</p>
+      </div>
     </section>
   </main>
 
-  <a class="whatsapp-float" href="https://wa.me/5548999001340" target="_blank" rel="noopener" data-whatsapp data-placement="floating" aria-label="Conversar com André pelo WhatsApp">WhatsApp</a>
+  <a class="whatsapp-float" href="https://wa.me/5548999001340?text=Ol%C3%A1%20Andr%C3%A9%21%20Vi%20seu%20site%20e%20gostaria%20de%20conversar%20sobre%20gest%C3%A3o%20de%20tr%C3%A1fego%20para%20minha%20empresa." target="_blank" rel="noopener" aria-label="Conversar com André pelo WhatsApp">
+    <i data-lucide="message-circle" class="h-5 w-5" aria-hidden="true"></i>
+    WhatsApp
+  </a>
 
-  <footer class="site-footer">
-    <div class="container footer-grid"><div><a class="brand" href="#inicio"><span class="brand-mark">AR</span><span class="brand-copy"><strong>AAR Marketing</strong><small>André Rodrigues · Tráfego pago</small></span></a></div><div><span>Google Ads</span><span>Meta Ads</span><span>Performance</span></div><div><a href="politica-de-privacidade.html">Política de Privacidade</a><a href="https://wa.me/5548999001340" target="_blank" rel="noopener" data-whatsapp data-placement="footer">Contato pelo WhatsApp</a><span>© <span data-year></span> André Rodrigues</span></div></div>
+  <footer class="border-t border-gray-800 bg-[#0a0a0a] px-6 py-8 text-center">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 md:flex-row">
+      <a href="#inicio" class="text-xl font-bold tracking-tighter text-white" aria-label="AAR Marketing — início">André<span class="text-accent">.</span></a>
+      <p class="text-sm text-gray-500">© <span id="current-year">2026</span> André Rodrigues. Todos os direitos reservados.</p>
+      <a href="politica-de-privacidade.html" class="text-sm text-gray-500 transition-colors hover:text-white">Política de Privacidade</a>
+    </div>
   </footer>
 
-  <script src="js/script.js?v=20261008-1" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) window.lucide.createIcons();
+      const year = document.querySelector('#current-year');
+      if (year) year.textContent = new Date().getFullYear();
+    });
+  </script>
 </body>
 </html>
