@@ -111,6 +111,18 @@
     .analysis-button:disabled { cursor: not-allowed; transform: none; background: #262626; color: #9ca3af; box-shadow: none; }
     .analysis-form__note { color: #6b7280; font-size: .75rem; line-height: 1.6; text-align: center; }
     .analysis-form__note a { color: #9ca3af; text-decoration: underline; }
+    .analysis-botcheck { display: none; }
+    .analysis-status {
+      border: 1px solid transparent;
+      border-radius: .75rem;
+      padding: .9rem 1rem;
+      font-size: .875rem;
+      line-height: 1.5;
+      text-align: center;
+    }
+    .analysis-status[hidden] { display: none; }
+    .analysis-status--success { border-color: rgba(74,222,128,.35); background: rgba(22,163,74,.12); color: #bbf7d0; }
+    .analysis-status--error { border-color: rgba(248,113,113,.35); background: rgba(220,38,38,.12); color: #fecaca; }
     .whatsapp-float {
       position: fixed;
       right: 1.25rem;
@@ -304,12 +316,18 @@
       <div class="pointer-events-none absolute left-1/2 top-1/2 h-96 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/20 blur-[120px]"></div>
       <div class="relative z-10 mx-auto max-w-3xl text-center">
         <h2 id="analise-form-title" class="mb-5 text-3xl font-bold md:text-5xl">Solicite uma análise do seu cenário.</h2>
-        <p class="mx-auto max-w-2xl text-lg leading-relaxed text-gray-400">O formulário está preparado para receber os dados da empresa. O envio por e-mail será ativado quando a automação estiver pronta.</p>
+        <p class="mx-auto max-w-2xl text-lg leading-relaxed text-gray-400">Preencha os dados abaixo para que eu conheça sua empresa e o que você deseja melhorar. A solicitação será enviada por e-mail para meu atendimento.</p>
 
-        <form class="analysis-form" id="analysis-form">
+        <form class="analysis-form" id="analysis-form" method="post">
+          <input type="hidden" name="access_key" value="cc3f03d2-aa29-4c14-b102-dd686a990a9b">
+          <input type="hidden" name="subject" value="Nova solicitação de análise — AAR Marketing">
+          <input type="hidden" name="from_name" value="Site AAR Marketing">
+          <input type="checkbox" name="botcheck" class="analysis-botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="analysis-form__grid">
             <div class="analysis-field"><label for="analysis-name">Seu nome</label><input id="analysis-name" name="name" type="text" autocomplete="name" placeholder="Como posso chamar você?" required></div>
+            <div class="analysis-field"><label for="analysis-email">Seu e-mail</label><input id="analysis-email" name="email" type="email" autocomplete="email" placeholder="voce@empresa.com.br" required></div>
             <div class="analysis-field"><label for="analysis-company">Empresa</label><input id="analysis-company" name="company" type="text" autocomplete="organization" placeholder="Nome da empresa" required></div>
+            <div class="analysis-field"><label for="analysis-phone">WhatsApp</label><input id="analysis-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(48) 99999-9999" required></div>
             <div class="analysis-field analysis-field--wide"><label for="analysis-website">Site ou Instagram da empresa</label><input id="analysis-website" name="website" type="text" autocomplete="url" placeholder="seusite.com.br ou @empresa" required></div>
             <div class="analysis-field"><label for="analysis-platform">Onde anuncia atualmente?</label><select id="analysis-platform" name="platform" required><option value="" selected disabled>Selecione</option><option>Google Ads</option><option>Meta Ads</option><option>Google Ads e Meta Ads</option><option>Ainda não anuncia</option></select></div>
             <div class="analysis-field"><label for="analysis-objective">Principal objetivo</label><select id="analysis-objective" name="objective" required><option value="" selected disabled>Selecione</option><option>Gerar contatos</option><option>Gerar agendamentos</option><option>Gerar orçamentos</option><option>Gerar vendas</option><option>Outro objetivo</option></select></div>
@@ -317,8 +335,9 @@
             <div class="analysis-field analysis-field--wide"><label for="analysis-context">Contexto adicional <span class="text-gray-500">(opcional)</span></label><textarea id="analysis-context" name="context" maxlength="500" placeholder="Conte brevemente o que você gostaria de melhorar."></textarea></div>
           </div>
           <div class="analysis-form__footer">
-            <button type="button" class="analysis-button" disabled>Envio por e-mail em configuração</button>
-            <p class="analysis-form__note">Enquanto a integração não estiver ativa, nenhum dado preenchido neste formulário será enviado ou armazenado. Para contato imediato, use o WhatsApp flutuante. Consulte a <a href="politica-de-privacidade.html">Política de Privacidade</a>.</p>
+            <button type="submit" class="analysis-button">Solicitar análise</button>
+            <p class="analysis-form__note">Ao enviar, seus dados serão processados pelo Web3Forms para entregar a solicitação por e-mail. Consulte a <a href="politica-de-privacidade.html">Política de Privacidade</a>.</p>
+            <p id="analysis-status" class="analysis-status" role="status" aria-live="polite" hidden></p>
           </div>
         </form>
       </div>
@@ -343,6 +362,52 @@
       if (window.lucide) window.lucide.createIcons();
       const year = document.querySelector('#current-year');
       if (year) year.textContent = new Date().getFullYear();
+
+      const form = document.querySelector('#analysis-form');
+      const submitButton = form?.querySelector('button[type="submit"]');
+      const status = document.querySelector('#analysis-status');
+
+      const showStatus = (message, type) => {
+        if (!status) return;
+        status.textContent = message;
+        status.className = `analysis-status analysis-status--${type}`;
+        status.hidden = false;
+      };
+
+      form?.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        if (!form.reportValidity() || !submitButton) return;
+
+        const originalText = submitButton.textContent;
+        submitButton.textContent = 'Enviando...';
+        submitButton.disabled = true;
+        if (status) status.hidden = true;
+
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 15000);
+
+        try {
+          const response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: new FormData(form),
+            signal: controller.signal
+          });
+          const data = await response.json();
+
+          if (!response.ok || !data.success) {
+            throw new Error('Submission failed');
+          }
+
+          form.reset();
+          showStatus('Solicitação enviada. Recebi seus dados e entrarei em contato.', 'success');
+        } catch (error) {
+          showStatus('Não foi possível enviar agora. Tente novamente ou fale comigo pelo WhatsApp.', 'error');
+        } finally {
+          window.clearTimeout(timeout);
+          submitButton.textContent = originalText;
+          submitButton.disabled = false;
+        }
+      });
     });
   </script>
 </body>
