@@ -108,11 +108,9 @@
     .analysis-field textarea:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,.15); }
     .analysis-form__footer { display: grid; gap: 1rem; margin-top: 1.5rem; }
     .analysis-form__footer .analysis-button { width: 100%; min-height: 3.75rem; font-size: 1rem; }
+    .analysis-button:disabled { cursor: not-allowed; transform: none; background: #262626; color: #9ca3af; box-shadow: none; }
     .analysis-form__note { color: #6b7280; font-size: .75rem; line-height: 1.6; text-align: center; }
     .analysis-form__note a { color: #9ca3af; text-decoration: underline; }
-    .analysis-handoff { margin-top: 1.25rem; border-left: 2px solid #2563eb; padding: .9rem 1rem; color: #d1d5db; background: rgba(37,99,235,.08); }
-    .analysis-handoff[hidden] { display: none; }
-    .analysis-handoff a { color: #60a5fa; font-weight: 700; text-decoration: underline; }
     .whatsapp-float {
       position: fixed;
       right: 1.25rem;
@@ -306,7 +304,7 @@
       <div class="pointer-events-none absolute left-1/2 top-1/2 h-96 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/20 blur-[120px]"></div>
       <div class="relative z-10 mx-auto max-w-3xl text-center">
         <h2 id="analise-form-title" class="mb-5 text-3xl font-bold md:text-5xl">Solicite uma análise do seu cenário.</h2>
-        <p class="mx-auto max-w-2xl text-lg leading-relaxed text-gray-400">Preencha as informações principais. Ao continuar, o WhatsApp abrirá com a solicitação pronta para você revisar e enviar.</p>
+        <p class="mx-auto max-w-2xl text-lg leading-relaxed text-gray-400">O formulário está preparado para receber os dados da empresa. O envio por e-mail será ativado quando a automação estiver pronta.</p>
 
         <form class="analysis-form" id="analysis-form">
           <div class="analysis-form__grid">
@@ -319,10 +317,9 @@
             <div class="analysis-field analysis-field--wide"><label for="analysis-context">Contexto adicional <span class="text-gray-500">(opcional)</span></label><textarea id="analysis-context" name="context" maxlength="500" placeholder="Conte brevemente o que você gostaria de melhorar."></textarea></div>
           </div>
           <div class="analysis-form__footer">
-            <button type="submit" class="analysis-button">Solicitar análise no WhatsApp</button>
-            <p class="analysis-form__note">Os dados não são enviados pelo site. Ao continuar, eles serão inseridos em uma mensagem no WhatsApp; a solicitação só será enviada quando você tocar em <strong>Enviar</strong>. Consulte a <a href="politica-de-privacidade.html">Política de Privacidade</a>.</p>
+            <button type="button" class="analysis-button" disabled>Envio por e-mail em configuração</button>
+            <p class="analysis-form__note">Enquanto a integração não estiver ativa, nenhum dado preenchido neste formulário será enviado ou armazenado. Para contato imediato, use o WhatsApp flutuante. Consulte a <a href="politica-de-privacidade.html">Política de Privacidade</a>.</p>
           </div>
-          <p class="analysis-handoff" id="analysis-handoff" hidden aria-live="polite">Se o WhatsApp não abrir automaticamente, <a id="analysis-whatsapp-link" href="https://wa.me/5548999001340" target="_blank" rel="noopener">continue por aqui</a>.</p>
         </form>
       </div>
     </section>
@@ -346,33 +343,6 @@
       if (window.lucide) window.lucide.createIcons();
       const year = document.querySelector('#current-year');
       if (year) year.textContent = new Date().getFullYear();
-
-      const form = document.querySelector('#analysis-form');
-      const handoff = document.querySelector('#analysis-handoff');
-      const handoffLink = document.querySelector('#analysis-whatsapp-link');
-
-      form?.addEventListener('submit', (event) => {
-        event.preventDefault();
-        if (!form.reportValidity()) return;
-
-        const data = new FormData(form);
-        const context = String(data.get('context') || '').trim();
-        const message = [
-          'Olá André! Gostaria de solicitar uma análise do meu cenário.',
-          '',
-          `Nome: ${String(data.get('name')).trim()}`,
-          `Empresa: ${String(data.get('company')).trim()}`,
-          `Site/Instagram: ${String(data.get('website')).trim()}`,
-          `Anuncia atualmente: ${String(data.get('platform')).trim()}`,
-          `Objetivo: ${String(data.get('objective')).trim()}`,
-          `Investimento mensal: ${String(data.get('investment')).trim()}`,
-          ...(context ? [`Contexto: ${context}`] : [])
-        ].join('\n');
-        const whatsappUrl = `https://wa.me/5548999001340?text=${encodeURIComponent(message)}`;
-        handoffLink.href = whatsappUrl;
-        handoff.hidden = false;
-        window.open(whatsappUrl, '_blank', 'noopener');
-      });
     });
   </script>
 </body>
