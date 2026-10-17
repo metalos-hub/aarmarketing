@@ -107,3 +107,6 @@ vcs.forEach(c => c.onclick = () => { vdv.src = c.querySelector("source").src; vd
 vd.querySelector(".x").onclick = () => vd.close();
 vd.addEventListener("click", e => { if (e.target === vd) vd.close(); });
 vd.addEventListener("close", () => { vdv.pause(); vdv.removeAttribute("src"); vdv.load(); });
+
+// ao trocar o filtro da galeria, volta para a primeira foto
+chips.forEach(c => c.addEventListener("click", () => { document.querySelector(".gl").scrollLeft = 0; }));

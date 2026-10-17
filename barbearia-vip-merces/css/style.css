@@ -861,3 +861,10 @@ nav{gap:22px}nav a{font-size:.95rem}
 @media (max-width: 760px) {
     .hero::before{background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.82))}
 }
+
+/* ===== Galeria no celular: carrossel lateral, como os vídeos ===== */
+@media (max-width: 760px) {
+    .gl{columns:auto;display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:14px;scrollbar-color:#f2c94c #1a1408}
+    .ph{flex:0 0 auto;width:auto;height:clamp(300px,52vh,400px);margin:0;scroll-snap-align:start}
+    .ph img{height:100%;width:auto;max-width:none}
+}
