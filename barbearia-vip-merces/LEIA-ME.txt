@@ -1,0 +1,25 @@
+BARBEARIA VIP MERCÊS - SITE
+
+index.html      página (textos, serviços, endereço, horário)
+css/style.css   visual (cores no bloco :root, no início)
+js/script.js    menu, WhatsApp, galeria e lightbox
+img/            logo, ícone, fotos (.webp) e fundos (fundo-*.webp)
+video/          vídeo do topo e vídeos "Veja por dentro" (.mp4, sem áudio)
+
+Para editar:
+- Número do WhatsApp: constante WA no início de js/script.js
+- Preços e serviços: seção id="servicos" no index.html
+- Novas fotos: coloque em img/ e copie um bloco <button class="ph"> da galeria
+- Novos depoimentos: copie o bloco <figure> na seção id="avaliacoes"
+
+- Trocar um fundo: substitua img/fundo-hero.webp, fundo-lounge.webp, fundo-salao.webp, fundo-mezanino.webp ou fundo-fachada.webp mantendo o mesmo nome
+
+- Horário e selo "Aberto agora": constante HORARIO no js/script.js (e o texto na seção de contato)
+- Perguntas frequentes: seção id="duvidas" (se mudar, atualize também o bloco FAQPage no <head>)
+- Se o site NÃO ficar em www.barbeariavipmerces.com.br, ajuste canonical e og:image/og:url no <head>
+
+- Trocar um vídeo: substitua o arquivo em video/ mantendo o nome (MP4 H.264, sem áudio, ideal até 1-2 MB; vertical nos cards)
+- Vídeos longos: publique no YouTube e use o link, para não pesar a hospedagem
+
+Para publicar, envie a pasta inteira para qualquer hospedagem (Netlify, Vercel, Hostinger etc.).
+O index.html precisa ficar na raiz, junto das pastas css, js e img.
