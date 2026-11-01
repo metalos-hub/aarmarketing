@@ -175,7 +175,9 @@ out+=kpi('MQL',number(m.mql),m.leads===null?'Cobertura comercial indisponível':
 }
 document.getElementById('kpis').innerHTML=out;
 let comparisonNote='';
-if(cmp&&state.period==='WEEK_20261030')comparisonNote='Atual: 24–30/10. Anterior: 17–23/10. ';\nelse if(cmp&&state.period==='MTD_20261030')comparisonNote='Atual: 01–30/10. Anterior: setembro completo. O CRM de setembro está indisponível. ';\nelse if(cmp&&state.period==='WEEK_20261023')comparisonNote='Atual: 17–23/10. Anterior: 10–16/10. ';
+if(cmp&&state.period==='WEEK_20261030')comparisonNote='Atual: 24–30/10. Anterior: 17–23/10. ';
+else if(cmp&&state.period==='MTD_20261030')comparisonNote='Atual: 01–30/10. Anterior: setembro completo. O CRM de setembro está indisponível. ';
+else if(cmp&&state.period==='WEEK_20261023')comparisonNote='Atual: 17–23/10. Anterior: 10–16/10. ';
 else if(cmp&&state.period==='CUR15_20261023')comparisonNote='Atual: 09–23/10. Anterior: 24/09–08/10. ';
 else if(cmp&&state.period==='MTD_20261023')comparisonNote='Atual: 01–23/10. Anterior: 01–23/09. O CRM de setembro está indisponível. ';
 else if(cmp&&state.period==='OCT8')comparisonNote='Atual: 01–08/10. Anterior: 01–08/09. O CRM de setembro está indisponível. ';
