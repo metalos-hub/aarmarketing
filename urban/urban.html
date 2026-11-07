@@ -29,6 +29,21 @@ a{color:var(--gold)}footer{font-size:11px;color:var(--muted);border-top:1px soli
 @media(max-width:760px){.forecast{padding:16px}.forecast-summary{grid-template-columns:1fr}.forecast .section-head{display:block}.forecast .section-head small{display:block;text-align:left;margin-top:8px}.forecast td,.forecast th{min-width:105px}}
 @media print{.forecast{background:white;border-color:#bbb}.forecast-summary strong,.forecast .target{color:#222!important}}
 
+
+.forecast{padding:0;margin-bottom:22px}
+.forecast-disclosure{margin:0;padding:0;border:0;background:transparent}
+.forecast-toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;min-height:44px;list-style:none;border-radius:11px;font-weight:600}
+.forecast-toggle::-webkit-details-marker{display:none}
+.forecast-toggle:hover{background:rgba(223,187,119,.07)}
+.forecast-toggle:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.forecast-toggle-action{display:flex;align-items:center;gap:9px;font-size:12px;font-weight:400}
+.forecast-chevron{width:7px;height:7px;border:solid currentColor;border-width:0 1.5px 1.5px 0;transform:rotate(45deg);margin-top:-3px}
+.forecast-collapse,.forecast-disclosure[open] .forecast-expand{display:none}
+.forecast-disclosure[open] .forecast-collapse{display:inline}
+.forecast-disclosure[open] .forecast-chevron{transform:rotate(225deg);margin-top:3px}
+.forecast-content{padding:17px 22px 22px;border-top:1px solid #65533b}
+@media(max-width:760px){.forecast-toggle{padding:11px 14px}.forecast-content{padding:14px}}
+@media print{.forecast-disclosure{break-inside:auto}.forecast-toggle{display:none}.forecast-content{padding:12px;border-top:0}}
 </style>
 </head><body><div class="layout">
 <aside class="sidebar"><div><div class="brand">URBAN</div><div class="subbrand">Company · AAR Marketing</div></div><div><div class="side-kicker">Relatório de desempenho</div><span class="source-pill">Google Ads</span></div><nav aria-label="Seções"><a href="#projecao-novembro">Projeção novembro</a><a href="#resumo">Visão geral</a><a href="#pracas">Por praça</a><a href="#campanhas">Campanhas</a><a href="#funil">Funil comercial</a><a href="#metodo">Critérios e fontes</a></nav><div class="side-foot">Conta 7310866670<br>Moeda BRL<br>America/Sao_Paulo</div></aside>
@@ -36,7 +51,13 @@ a{color:var(--gold)}footer{font-size:11px;color:var(--muted);border-top:1px soli
 <div class="toolbar"><label for="city">Praça da campanha</label><select id="city"><option value="Total">Todas as praças</option><option value="Porto Alegre">Porto Alegre</option><option value="Canoas">Canoas</option><option value="Itapema">Itapema</option><option value="Não identificada">Praça não identificada</option></select><span class="muted" id="currentFilter"></span><button class="plain-btn right" id="csv">Exportar tabela CSV</button><button class="plain-btn" onclick="window.print()">Imprimir / salvar PDF</button></div>
 <div class="content"><div class="notice"><b>Cobertura comercial:</b> a planilha contém leads a partir de <b>24/09</b>. Setembro completo e 01–08/09 têm dados de mídia, mas indicadores comerciais <b>n.d.</b> O MQL segue seu critério: origem Google e status <b>Em contato ou etapa posterior</b>.</div>
 
-<section id="projecao-novembro" class="forecast" aria-labelledby="forecastTitle">
+<section id="projecao-novembro" class="forecast" aria-labelledby="forecastToggleTitle">
+<details class="forecast-disclosure" id="forecastDisclosure">
+<summary class="forecast-toggle">
+<span id="forecastToggleTitle">Planejamento · Novembro de 2026</span>
+<span class="forecast-toggle-action" aria-hidden="true"><span class="forecast-expand">Expandir</span><span class="forecast-collapse">Recolher</span><span class="forecast-chevron"></span></span>
+</summary>
+<div class="forecast-content">
 <div class="section-head"><div><div class="tag">Planejamento · Novembro de 2026</div><h2 id="forecastTitle">Realizado e projeção do mês</h2></div><small>Base consultada em 06/11/2026 · dia parcial</small></div>
 <p class="muted">Todas as praças. Este quadro usa o planejamento aprovado de novembro e fica independente dos filtros históricos de período e praça abaixo.</p>
 <div class="forecast-budget"><span>Porto Alegre <b>R$ 22.000</b></span><span>Search MQL · verba separada <b>R$ 5.000</b></span><span>Canoas <b>R$ 5.000</b></span><span>Itapema <b>R$ 2.000</b></span></div>
@@ -62,6 +83,8 @@ a{color:var(--gold)}footer{font-size:11px;color:var(--muted);border-top:1px soli
 <p><b>Prazo:</b> a faixa de 1–3 vendas corresponde aos leads captados em novembro após maturação, inclusive em dezembro. Não equivale a 1–3 contratos fechados até 30/11. O volume de contratos no calendário de novembro também pode incluir leads de meses anteriores e não foi estimado neste quadro.</p>
 <p><b>Recomendação:</b> revisar volume, CPL e saldo em 12/11; qualidade e visitas em 18/11; e resultados da coorte em 05/12, com nova leitura posterior se ainda houver negociações abertas. Não projetar receita sem valor de venda confirmado.</p>
 <p><b>Fontes:</b> Google Ads, conta 7310866670, gasto de 01–06/11 parcial; <a href="https://docs.google.com/spreadsheets/d/1CZo2cEARDqb2v5bRDYz8WOD3gQ3d-GxjMPcTneqPMIo/edit?gid=209300026#gid=209300026" target="_blank" rel="noopener">planilha Urban · base comercial</a>, consulta de 06/11; orçamento aprovado pelo cliente nesta conversa. Somente dados agregados.</p>
+</details>
+</div>
 </details>
 </section>
 
@@ -241,5 +264,24 @@ document.getElementById('coverage').textContent=DATA.methods.coverage+' Consulta
 document.getElementById('conflict').textContent=DATA.methods.conflict;
 document.getElementById('comparison').textContent=DATA.methods.comparison;
 document.getElementById('sourceLink').href=DATA.methods.sheet;
+
+const forecastDisclosure = document.getElementById('forecastDisclosure');
+const forecastLink = document.querySelector('a[href="#projecao-novembro"]');
+function openLinkedForecast() {
+  if (window.location.hash === '#projecao-novembro') forecastDisclosure.open = true;
+}
+forecastLink?.addEventListener('click', () => { forecastDisclosure.open = true; });
+window.addEventListener('hashchange', openLinkedForecast);
+openLinkedForecast();
+
+let forecastWasOpen;
+window.addEventListener('beforeprint', () => {
+  forecastWasOpen = forecastDisclosure.open;
+  forecastDisclosure.open = true;
+});
+window.addEventListener('afterprint', () => {
+  if (forecastWasOpen !== undefined) forecastDisclosure.open = forecastWasOpen;
+});
+
 render();
 </script></body></html>
