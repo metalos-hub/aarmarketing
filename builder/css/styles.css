@@ -486,8 +486,9 @@ input.editable:focus {
   border: 1px solid rgba(226,232,240,.6);
   border-radius: var(--radius-xl);
   padding: 36px;
+  margin-bottom: 20px;
   box-shadow: var(--shadow-lg), var(--shadow-glow);
-  animation: cardIn .5s ease-out .3s both;
+  animation: cardIn .5s ease-out .15s both;
 }
 
 .url-box {

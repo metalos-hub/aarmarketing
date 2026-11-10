@@ -48,36 +48,6 @@
 
 <main>
 
-  <!-- ═══ HOW IT WORKS ═══ -->
-  <div class="card">
-    <div class="card-header">
-      <div class="card-header-icon amber">
-        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
-      </div>
-      <div class="card-header-text">
-        <h2>Como funciona?</h2>
-        <p>3 passos simples para gerar sua URL rastreada</p>
-      </div>
-    </div>
-    <div class="steps">
-      <div class="step">
-        <div class="step-number">1</div>
-        <h4>Cole sua URL</h4>
-        <p>Insira a URL da landing page de destino da campanha</p>
-      </div>
-      <div class="step">
-        <div class="step-number">2</div>
-        <h4>Nome da campanha</h4>
-        <p>Digite o nome. Espaços viram hífens automaticamente</p>
-      </div>
-      <div class="step">
-        <div class="step-number">3</div>
-        <h4>Copie a URL</h4>
-        <p>URL gerada em tempo real com todos os parâmetros</p>
-      </div>
-    </div>
-  </div>
-
   <!-- ═══ FORM CARD ═══ -->
   <div class="card">
     <div class="card-header">
@@ -142,8 +112,87 @@
     </div>
   </div>
 
-  <!-- ═══ UTM PARAMS CARD ═══ -->
+  <!-- ═══ URL OUTPUT CARD ═══ -->
+  <div class="output-card" id="outputCard">
+    <div class="card-header">
+      <div class="card-header-icon blue">
+        <svg viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
+      </div>
+      <div class="card-header-text">
+        <h2>URL Gerada</h2>
+        <p>Copie e cole no campo de URL final do Google Ads</p>
+      </div>
+    </div>
+
+    <div class="status-row">
+      <div class="status-dot"></div>
+      <span class="status-text">Atualizado em tempo real</span>
+    </div>
+
+    <div class="url-box">
+      <textarea id="generatedUrl" readonly placeholder="👆 Preencha a URL do site acima para gerar o link rastreado..."></textarea>
+    </div>
+
+    <div class="char-count">
+      <span id="urlLength">0</span> caracteres
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="copyUrl()">
+        <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+        Copiar URL
+      </button>
+      <button class="btn btn-success" onclick="copyShort()">
+        <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
+        Copiar só parâmetros
+      </button>
+      <button class="btn btn-secondary" onclick="openUrl()">
+        <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+        Testar URL
+      </button>
+      <button class="btn btn-danger" onclick="resetForm()">
+        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        Limpar
+      </button>
+    </div>
+
+    <div style="margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--slate-200); text-align: center; font-size: 12px; color: var(--slate-400);">
+      Dúvidas sobre os parâmetros? <a href="#utmParamsCard" style="color: var(--blue-600); font-weight: 500; text-decoration: none;">Ver explicação detalhada de cada tag abaixo ↓</a>
+    </div>
+  </div>
+
+  <!-- ═══ HOW IT WORKS ═══ -->
   <div class="card">
+    <div class="card-header">
+      <div class="card-header-icon amber">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
+      </div>
+      <div class="card-header-text">
+        <h2>Como funciona?</h2>
+        <p>3 passos simples para gerar sua URL rastreada</p>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h4>Cole sua URL</h4>
+        <p>Insira a URL da landing page de destino da campanha</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h4>Nome da campanha</h4>
+        <p>Digite o nome. Espaços viram hífens automaticamente</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h4>Copie a URL</h4>
+        <p>URL gerada em tempo real com todos os parâmetros</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ UTM PARAMS CARD ═══ -->
+  <div class="card" id="utmParamsCard">
     <div class="card-header">
       <div class="card-header-icon emerald">
         <svg viewBox="0 0 24 24"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 002 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
@@ -344,51 +393,6 @@
           </p>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- ═══ URL OUTPUT CARD ═══ -->
-  <div class="output-card" id="outputCard">
-    <div class="card-header">
-      <div class="card-header-icon blue">
-        <svg viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
-      </div>
-      <div class="card-header-text">
-        <h2>URL Gerada</h2>
-        <p>Copie e cole no campo de URL final do Google Ads</p>
-      </div>
-    </div>
-
-    <div class="status-row">
-      <div class="status-dot"></div>
-      <span class="status-text">Atualizado em tempo real</span>
-    </div>
-
-    <div class="url-box">
-      <textarea id="generatedUrl" readonly placeholder="👆 Preencha a URL do site acima para gerar o link rastreado..."></textarea>
-    </div>
-
-    <div class="char-count">
-      <span id="urlLength">0</span> caracteres
-    </div>
-
-    <div class="btn-row">
-      <button class="btn btn-primary" onclick="copyUrl()">
-        <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-        Copiar URL
-      </button>
-      <button class="btn btn-success" onclick="copyShort()">
-        <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
-        Copiar só parâmetros
-      </button>
-      <button class="btn btn-secondary" onclick="openUrl()">
-        <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
-        Testar URL
-      </button>
-      <button class="btn btn-danger" onclick="resetForm()">
-        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-        Limpar
-      </button>
     </div>
   </div>
 
