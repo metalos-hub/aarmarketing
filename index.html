@@ -170,6 +170,14 @@
     "knowsAbout": ["Google Ads", "Meta Ads", "Análise de performance", "Mensuração de conversões"]
   }
   </script>
+
+  <script>
+(() => {
+  const query = new URLSearchParams(location.search);
+  const event = { site: "5b9fd57a-f97e-453a-ad5b-e4fe16b3c7cc", source: query.get("utm_source"), medium: query.get("utm_medium"), campaign: query.get("utm_campaign") };
+  fetch("https://rlagapyxvhzjbyrcjhdz.supabase.co/functions/v1/vn-site", { method: "POST", body: JSON.stringify(event), keepalive: true, credentials: "omit", referrerPolicy: "no-referrer" }).catch(() => {});
+})();
+</script>
 </head>
 <body class="font-sans antialiased selection:bg-accent selection:text-white">
   <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
